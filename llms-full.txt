@@ -1,0 +1,96 @@
+# Cleanrows
+
+> Clean, structured data for recruiting, sales and marketing teams.
+
+Cleanrows publishes paid Apify Store Actors that return structured rows of public data. Prices are pay-per-result with no start fee. This file is for language-model clients looking for the right tool.
+
+Site: https://henryklimes.github.io/cleanrows-site/
+Store profile: https://apify.com/henryklimes
+
+## Actors
+
+- [ATS Jobs Feed](https://apify.com/henryklimes/ats-jobs-feed): Open jobs from Greenhouse, Lever, Ashby, Workable, SmartRecruiters and Recruitee as one JSON feed. Price: $1.50 per 1,000 jobs.
+- [Workday Jobs Feed](https://apify.com/henryklimes/workday-jobs-feed): Every opening on a myworkdayjobs.com career site, including boards past the 2,000-job cap, with pay ranges and exact posting dates. Price: $1.50 per 1,000 jobs.
+- [Careers Page & ATS Detector](https://apify.com/henryklimes/careers-ats-detector): From a company domain, get the careers page, the ATS it uses, the board ID and how many jobs are open. Price: $3 per 1,000 domains.
+- [Shopify & WooCommerce Products Feed](https://apify.com/henryklimes/ecommerce-products-feed): Full public store catalogs: prices, sale prices, variants, SKUs, stock and images, one schema. Price: $1 per 1,000 products.
+- [Company Website Enricher](https://apify.com/henryklimes/company-enricher): A company profile read from the company's own website: emails, phones, socials, tech stack and ATS. Price: $4 per 1,000 companies.
+- [Google Trends API – Bulk Keywords, Compare & Trending Now](https://apify.com/henryklimes/google-trends): Interest over time, by region, rising queries and Trending Now. Compare more than 5 keywords on one scale. A hosted pytrends alternative. Price: $0.25 per 1,000 keywords.
+- [Screenshot & PDF API](https://apify.com/henryklimes/screenshot-pdf): Bulk URL to PNG, JPEG, WebP or PDF, including full-page and mobile captures. Pay only for successful captures. Price: $2 per 1,000 captures.
+
+## When to use which Actor
+
+- Open jobs from Greenhouse, Lever, Ashby, Workable, SmartRecruiters or Recruitee: ATS Jobs Feed.
+- Open jobs from a myworkdayjobs.com career site, including boards with more than 2,000 postings: Workday Jobs Feed.
+- You have company domains and need the ATS name, careers URL, board ID or open-job count: Careers Page & ATS Detector.
+- A public Shopify or WooCommerce catalog: Shopify & WooCommerce Products Feed.
+- Company emails, phones, socials, tech stack from the company's own website: Company Website Enricher.
+- Google Trends for many keywords, compare more than 5 terms, or Trending Now: Google Trends API (a pytrends alternative).
+- Bulk screenshots or URL-to-PDF: Screenshot & PDF API.
+
+## Guides
+
+- [pytrends alternative](https://henryklimes.github.io/cleanrows-site/pytrends-alternative/)
+- [Greenhouse jobs API](https://henryklimes.github.io/cleanrows-site/greenhouse-jobs-api/)
+- [Lever jobs API](https://henryklimes.github.io/cleanrows-site/lever-jobs-api/)
+- [Ashby jobs API](https://henryklimes.github.io/cleanrows-site/ashby-jobs-api/)
+- [Workday jobs API](https://henryklimes.github.io/cleanrows-site/workday-jobs-api/)
+- [Which ATS does a company use?](https://henryklimes.github.io/cleanrows-site/which-ats-does-a-company-use/)
+- [Shopify products API](https://henryklimes.github.io/cleanrows-site/shopify-products-api/)
+- [WooCommerce products API](https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/)
+- [Company website enrichment](https://henryklimes.github.io/cleanrows-site/company-website-enrichment/)
+- [URL to PDF API](https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/)
+- [Google Trends API](https://henryklimes.github.io/cleanrows-site/google-trends-api/)
+
+## Reports
+
+- [AI startup hiring report — 2026-11-16](https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/) (16 November 2026)
+- [AI startup hiring report — November 2026](https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/) (15 November 2026)
+
+## Optional
+
+- [Full actor descriptions](https://henryklimes.github.io/cleanrows-site/llms-full.txt)
+
+
+## Actor details
+
+### ATS Jobs Feed
+URL: https://apify.com/henryklimes/ats-jobs-feed
+Price: $1.50 per 1,000 jobs
+Open jobs from Greenhouse, Lever, Ashby, Workable, SmartRecruiters and Recruitee as one JSON feed.
+Input: company or board identifiers for Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee. Output: normalized job rows (title, company, location, salary when published, apply URL, description optional). Not for Workday sites.
+
+### Workday Jobs Feed
+URL: https://apify.com/henryklimes/workday-jobs-feed
+Price: $1.50 per 1,000 jobs
+Every opening on a myworkdayjobs.com career site, including boards past the 2,000-job cap, with pay ranges and exact posting dates.
+Input: myworkdayjobs.com career site URLs. Output: job rows including locations, remote type, pay range, posting date, description optional. Handles the 2,000-result cap by paging. Public endpoints, no login. If a site rate-limits every attempt, the run fails instead of returning an empty success.
+
+### Careers Page & ATS Detector
+URL: https://apify.com/henryklimes/careers-ats-detector
+Price: $3 per 1,000 domains
+From a company domain, get the careers page, the ATS it uses, the board ID and how many jobs are open.
+Input: company domains. Output: careers URL, ATS name (Greenhouse, Lever, Ashby, Workday and 20 more), board ID, open-job count. This detects the ATS; it does not scrape the jobs themselves.
+
+### Shopify & WooCommerce Products Feed
+URL: https://apify.com/henryklimes/ecommerce-products-feed
+Price: $1 per 1,000 products
+Full public store catalogs: prices, sale prices, variants, SKUs, stock and images, one schema.
+Input: Shopify or WooCommerce store URLs. Output: products with prices, sale prices, variants, SKUs, stock, images, categories and tags. Uses public JSON endpoints, no login and no browser.
+
+### Company Website Enricher
+URL: https://apify.com/henryklimes/company-enricher
+Price: $4 per 1,000 companies
+A company profile read from the company's own website: emails, phones, socials, tech stack and ATS.
+Input: company domains. Output: name, description, logo, business emails and phones, address, social profiles, tech stack, contact page, careers page, ATS and open-job count. Data is read from the company's own website, not a third-party database.
+
+### Google Trends API – Bulk Keywords, Compare & Trending Now
+URL: https://apify.com/henryklimes/google-trends
+Price: $0.25 per 1,000 keywords
+Interest over time, by region, rising queries and Trending Now. Compare more than 5 keywords on one scale. A hosted pytrends alternative.
+Input: keywords (up to 500), optional compare mode, geos, time range, or Trending Now by country. Output: interest-over-time, interest-by-region, top and rising related queries, or trending rows. Compare mode can put more than 5 keywords on one scale. Related topics are best-effort and off by default because Google often returns them empty to automated clients.
+
+### Screenshot & PDF API
+URL: https://apify.com/henryklimes/screenshot-pdf
+Price: $2 per 1,000 captures
+Bulk URL to PNG, JPEG, WebP or PDF, including full-page and mobile captures. Pay only for successful captures.
+Input: a list of URLs plus format (PNG, JPEG, WebP, PDF), viewport or device preset, optional selector and wait strategy. Output: captured files. Failed captures are not billed.

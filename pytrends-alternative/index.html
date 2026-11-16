@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A pytrends alternative for bulk Google Trends data · Cleanrows</title>
+  <meta name="description" content="pytrends was archived and Google&#x27;s official Trends API is still an alpha. Here is how to get interest over time, rising queries and comparisons of more than 5 keywords without maintaining a scraper.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/pytrends-alternative/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A pytrends alternative for bulk Google Trends data">
+  <meta property="og:description" content="pytrends was archived and Google&#x27;s official Trends API is still an alpha. Here is how to get interest over time, rising queries and comparisons of more than 5 keywords without maintaining a scraper.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/pytrends-alternative/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="A pytrends alternative for bulk Google Trends data">
+  <meta name="twitter:description" content="pytrends was archived and Google&#x27;s official Trends API is still an alpha. Here is how to get interest over time, rising queries and comparisons of more than 5 keywords without maintaining a scraper.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,560;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "A pytrends alternative for bulk Google Trends data",
+  "description": "pytrends was archived and Google's official Trends API is still an alpha. Here is how to get interest over time, rising queries and comparisons of more than 5 keywords without maintaining a scraper.",
+  "url": "https://henryklimes.github.io/cleanrows-site/pytrends-alternative/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cleanrows",
+    "url": "https://henryklimes.github.io/cleanrows-site/"
+  }
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>A pytrends alternative for bulk Google Trends data</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>A pytrends alternative for bulk Google Trends data</h1>
+    <p class="meta">pytrends was archived and Google&#x27;s official Trends API is still an alpha. Here is how to get interest over time, rising queries and comparisons of more than 5 keywords without maintaining a scraper.</p>
+    <p><a href="https://github.com/GeneralMills/pytrends">pytrends</a>, the unofficial Python library most people used to pull Google Trends, <a href="https://github.com/GeneralMills/pytrends">was archived</a> in 2024. It still works some of the time, but it is unmaintained, and Google rate-limits anonymous clients aggressively. Google&#x27;s own Trends API has been in alpha and is not a general-access product.</p>
+<p>If you only need a handful of keywords, the Trends website is enough. If you need hundreds of keywords, a weekly refresh, or a comparison of more than five terms on one scale, you need something that can hold a session, back off on HTTP 429, and retry.</p>
+<h2>What broke for most pytrends scripts</h2>
+<p>A typical pytrends script opens an explore request, then calls the four widgets (interest over time, interest by region, related queries, related topics). Google now often:</p>
+<ul><li>asks for a valid <code>NID</code> cookie from the Trends homepage before the explore call;</li><li>returns 429 with a <code>Retry-After</code> header after a short burst;</li><li>sends an empty list for related topics when it thinks the client is a scraper.</li></ul>
+<p>Related topics are the fragile one. Treat them as best-effort. Related queries (top, rising, and Breakout) are more reliable.</p>
+<h2>A hosted option</h2>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> is the Cleanrows Actor built for this job. It is a pytrends alternative you run on Apify:</p>
+<ul><li>interest over time, interest by region, and top and rising related queries for up to 500 keywords in one run;</li><li>compare mode that chains batches so more than 5 keywords share one scale (Google&#x27;s UI stops at 5);</li><li>Trending Now by country, from Google&#x27;s public RSS feed;</li><li>pay $0.25 per 1,000 keyword-rows, with no start fee.</li></ul>
+<p>A ready-made task is here: <a href="https://apify.com/henryklimes/google-trends/examples/pytrends-alternative-bulk-google-trends">pytrends alternative: bulk Google Trends interest over time</a>.</p>
+<p>The official path is still worth watching. If Google opens a generally available Trends API, use that. Until then, a paced, session-aware client is the practical option, whether you write it yourself or run this Actor.</p>
+<p>See also the <a href="../google-trends-api/">Google Trends API</a> guide and the tutorial <a href="https://dev.to/cleanrows/google-trends-api-without-pytrends-bulk-keywords-and-comparing-8-terms-in-python-7oo">Google Trends API without pytrends</a>.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

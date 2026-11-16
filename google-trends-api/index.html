@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Trends API for bulk keywords, comparisons and Trending Now · Cleanrows</title>
+  <meta name="description" content="How to pull Google Trends interest over time, interest by region, rising queries and Trending Now for many keywords, including comparisons of more than 5 terms.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/google-trends-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Google Trends API for bulk keywords, comparisons and Trending Now">
+  <meta property="og:description" content="How to pull Google Trends interest over time, interest by region, rising queries and Trending Now for many keywords, including comparisons of more than 5 terms.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/google-trends-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Google Trends API for bulk keywords, comparisons and Trending Now">
+  <meta name="twitter:description" content="How to pull Google Trends interest over time, interest by region, rising queries and Trending Now for many keywords, including comparisons of more than 5 terms.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,560;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Google Trends API for bulk keywords, comparisons and Trending Now",
+  "description": "How to pull Google Trends interest over time, interest by region, rising queries and Trending Now for many keywords, including comparisons of more than 5 terms.",
+  "url": "https://henryklimes.github.io/cleanrows-site/google-trends-api/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cleanrows",
+    "url": "https://henryklimes.github.io/cleanrows-site/"
+  }
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Google Trends API for bulk keywords, comparisons and Trending Now</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>Google Trends API for bulk keywords, comparisons and Trending Now</h1>
+    <p class="meta">How to pull Google Trends interest over time, interest by region, rising queries and Trending Now for many keywords, including comparisons of more than 5 terms.</p>
+    <p>Google Trends has no generally available official API. The website is fine for one-off checks. For a list of keywords, a weekly refresh, or a comparison that goes past Google&#x27;s 5-term cap, you need a client that can talk to the same explore widgets the website uses.</p>
+<h2>What you can get</h2>
+<p>For each keyword and geography you can request:</p>
+<ul><li><strong>Interest over time</strong> — a 0–100 series for the window you choose (for example the last 12 months).</li><li><strong>Interest by region</strong> — the same 0–100 scale by country, region, city or DMA.</li><li><strong>Related queries</strong> — top and rising queries, including Breakout terms.</li><li><strong>Trending Now</strong> — around 10 current rising searches per country, with traffic and related news, from Google&#x27;s public RSS feed.</li></ul>
+<p>Related topics exist in the interface but often come back empty for automated clients. Do not build a pipeline that depends on them.</p>
+<h2>The 5-keyword limit</h2>
+<p>The Trends explore UI lets you compare at most five terms, because they share one 0–100 scale. To compare 8 or 12 terms honestly, you run overlapping batches that include a shared anchor keyword, then rescale. That is easy to get wrong if you just stitch raw series together.</p>
+<h2>The Actor</h2>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> does the session handling, pacing (about one request per second per session), retries, and the compare-mode chaining. It costs $0.25 per 1,000 keyword-rows and $0.10 per 1,000 Trending Now rows, with no start fee.</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/google-trends/examples/pytrends-alternative-bulk-google-trends">pytrends alternative: bulk interest over time</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/keyword-research-rising-queries-google-trends">Keyword research with rising queries</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/compare-more-than-5-keywords-google-trends">Compare more than 5 keywords</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/trending-searches-today-by-country">Trending searches today by country</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/brand-vs-competitors-google-trends">Brand vs competitors</a></li></ul>
+<p>If you are replacing an old pytrends script, start with the <a href="../pytrends-alternative/">pytrends alternative</a> page.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

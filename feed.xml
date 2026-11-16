@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Cleanrows reports</title>
+  <link>https://henryklimes.github.io/cleanrows-site/</link>
+  <description>Data reports from Cleanrows Apify Actors.</description>
+  <language>en</language>
+  <lastBuildDate>Mon, 16 Nov 2026 09:00:00 +0100</lastBuildDate>
+  <item>
+    <title>AI startup hiring report — 2026-11-16</title>
+    <link>https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/</guid>
+    <pubDate>Mon, 16 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Snapshot of public job boards taken on 16 November 2026 at 09:37 CET. Data collected with ATS Jobs Feed by Cleanrows. Every number below comes from that…</description>
+  </item>
+  <item>
+    <title>AI startup hiring report — November 2026</title>
+    <link>https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/</guid>
+    <pubDate>Sun, 15 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Snapshot of public job boards taken on 15 November 2026 at 13:11 CET. Data collected with ATS Jobs Feed by Cleanrows. Every number below comes from that…</description>
+  </item>
+</channel>
+</rss>

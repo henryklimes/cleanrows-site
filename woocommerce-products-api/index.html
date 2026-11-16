@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WooCommerce products API — export a public store catalog · Cleanrows</title>
+  <meta name="description" content="The WooCommerce Store API can return products without a consumer key on many public shops. Here is the endpoint, the usual traps, and a hosted Actor that also covers Shopify.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="WooCommerce products API — export a public store catalog">
+  <meta property="og:description" content="The WooCommerce Store API can return products without a consumer key on many public shops. Here is the endpoint, the usual traps, and a hosted Actor that also covers Shopify.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="WooCommerce products API — export a public store catalog">
+  <meta name="twitter:description" content="The WooCommerce Store API can return products without a consumer key on many public shops. Here is the endpoint, the usual traps, and a hosted Actor that also covers Shopify.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,560;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "WooCommerce products API — export a public store catalog",
+  "description": "The WooCommerce Store API can return products without a consumer key on many public shops. Here is the endpoint, the usual traps, and a hosted Actor that also covers Shopify.",
+  "url": "https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cleanrows",
+    "url": "https://henryklimes.github.io/cleanrows-site/"
+  }
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>WooCommerce products API — export a public store catalog</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Ecommerce</p>
+    <h1>WooCommerce products API — export a public store catalog</h1>
+    <p class="meta">The WooCommerce Store API can return products without a consumer key on many public shops. Here is the endpoint, the usual traps, and a hosted Actor that also covers Shopify.</p>
+    <p>Many WooCommerce shops expose the <a href="https://developer.woocommerce.com/docs/apis/store-api/">Store API</a> without a customer login or a REST consumer key:</p>
+<p><code>https://{shop}/wp-json/wc/store/v1/products</code></p>
+<p>That is a different endpoint from the password-protected WooCommerce REST API (<code>/wp-json/wc/v3/products</code>). If you only need what a shopper can already see — title, price, stock status, images, variations — the Store API is the one to try first.</p>
+<h2>Gotchas</h2>
+<ul><li>Not every shop leaves the Store API open. A 401 or 404 means you should stop, not guess admin credentials.</li><li>Paging uses <code>page</code> and <code>per_page</code> (capped). You have to walk until a short page.</li><li>Variation prices and sale prices sit in slightly different fields than Shopify&#x27;s <code>products.json</code>.</li><li>Some sites sit behind a firewall or a bot challenge that a simple GET will not pass.</li></ul>
+<h2>The Actor</h2>
+<p><a href="https://apify.com/henryklimes/ecommerce-products-feed">Shopify &amp; WooCommerce Products Feed</a> covers public WooCommerce and Shopify stores on one schema: prices, sale prices, variants, SKUs, stock, images, categories and tags. $1 per 1,000 products. No login and no browser.</p>
+<p>A ready-made task: <a href="https://apify.com/henryklimes/ecommerce-products-feed/examples/woocommerce-products-export">Export WooCommerce products with prices</a>.</p>
+<p>Shopify details are on the <a href="../shopify-products-api/">Shopify products API</a> page.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

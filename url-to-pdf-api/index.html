@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL to PDF and screenshot API · Cleanrows</title>
+  <meta name="description" content="Turn a list of URLs into PDFs or full-page screenshots (PNG, JPEG, WebP). How a headless browser does it, what usually fails, and a hosted Actor that bills only successful captures.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="URL to PDF and screenshot API">
+  <meta property="og:description" content="Turn a list of URLs into PDFs or full-page screenshots (PNG, JPEG, WebP). How a headless browser does it, what usually fails, and a hosted Actor that bills only successful captures.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="URL to PDF and screenshot API">
+  <meta name="twitter:description" content="Turn a list of URLs into PDFs or full-page screenshots (PNG, JPEG, WebP). How a headless browser does it, what usually fails, and a hosted Actor that bills only successful captures.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,560;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "URL to PDF and screenshot API",
+  "description": "Turn a list of URLs into PDFs or full-page screenshots (PNG, JPEG, WebP). How a headless browser does it, what usually fails, and a hosted Actor that bills only successful captures.",
+  "url": "https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cleanrows",
+    "url": "https://henryklimes.github.io/cleanrows-site/"
+  }
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>URL to PDF and screenshot API</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Capture</p>
+    <h1>URL to PDF and screenshot API</h1>
+    <p class="meta">Turn a list of URLs into PDFs or full-page screenshots (PNG, JPEG, WebP). How a headless browser does it, what usually fails, and a hosted Actor that bills only successful captures.</p>
+    <p>A headless browser (Playwright or Puppeteer) can turn any URL into a PDF or a screenshot. A single file is a few lines of code. A reliable bulk job is not: you have to wait for the page to settle, hide cookie banners, pick a viewport, deal with timeouts, and avoid charging yourself for pages that never loaded.</p>
+<h2>The usual DIY shape</h2>
+<pre><code>browser = await chromium.launch()
+page = await browser.new_page()
+await page.goto(url, wait_until=&quot;networkidle&quot;)
+await page.pdf(path=&quot;out.pdf&quot;, format=&quot;A4&quot;)</code></pre>
+<p>That works until a site never reaches <code>networkidle</code>, until a sticky banner covers the content, or until you need a full-page PNG of a 20,000-pixel article. Mobile vs desktop, dark mode, and &quot;just this element&quot; all add flags you will end up supporting.</p>
+<h2>The Actor</h2>
+<p><a href="https://apify.com/henryklimes/screenshot-pdf">Screenshot &amp; PDF API</a> accepts a list of URLs and returns PNG, JPEG, WebP or PDF captures. It supports full-page, element-level and mobile viewports, and cookie-banner hiding. You pay $2 per 1,000 successful captures; failed captures are not billed.</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/screenshot-pdf/examples/bulk-url-to-pdf">Convert a list of URLs to PDF in bulk</a></li><li><a href="https://apify.com/henryklimes/screenshot-pdf/examples/full-page-website-screenshots">Take full-page screenshots of websites</a></li><li><a href="https://apify.com/henryklimes/screenshot-pdf/examples/mobile-website-screenshots">Capture mobile screenshots of websites</a></li></ul>
+<p>This Actor captures pages. It does not extract the text or the product catalog; use the <a href="https://apify.com/henryklimes/ecommerce-products-feed">Shopify &amp; WooCommerce Products Feed</a> or the jobs Actors when you need structured rows.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

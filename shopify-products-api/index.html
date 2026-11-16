@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify products API — export a public catalog · Cleanrows</title>
+  <meta name="description" content="Public Shopify stores expose products.json. Here is how to page through a full catalog, what the endpoint leaves out, and a hosted Actor that also covers WooCommerce on one schema.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/shopify-products-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Shopify products API — export a public catalog">
+  <meta property="og:description" content="Public Shopify stores expose products.json. Here is how to page through a full catalog, what the endpoint leaves out, and a hosted Actor that also covers WooCommerce on one schema.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/shopify-products-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shopify products API — export a public catalog">
+  <meta name="twitter:description" content="Public Shopify stores expose products.json. Here is how to page through a full catalog, what the endpoint leaves out, and a hosted Actor that also covers WooCommerce on one schema.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,560;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Shopify products API — export a public catalog",
+  "description": "Public Shopify stores expose products.json. Here is how to page through a full catalog, what the endpoint leaves out, and a hosted Actor that also covers WooCommerce on one schema.",
+  "url": "https://henryklimes.github.io/cleanrows-site/shopify-products-api/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cleanrows",
+    "url": "https://henryklimes.github.io/cleanrows-site/"
+  }
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Shopify products API — export a public catalog</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Ecommerce</p>
+    <h1>Shopify products API — export a public catalog</h1>
+    <p class="meta">Public Shopify stores expose products.json. Here is how to page through a full catalog, what the endpoint leaves out, and a hosted Actor that also covers WooCommerce on one schema.</p>
+    <p>A public Shopify store usually offers a JSON catalog with no login:</p>
+<p><code>https://{shop}/products.json?limit=250&amp;page={n}</code></p>
+<p>The official Ajax and Storefront APIs exist too, but <code>products.json</code> is the one people reach for when they want prices, variants, images and titles for a competitor store or a price-watch job. The <a href="https://shopify.dev/docs/api/ajax/reference/product">Shopify Ajax API</a> documents the related product endpoints.</p>
+<h2>Gotchas</h2>
+<ul><li>Page size is capped (commonly 250). Large catalogs need paging until a page comes back empty.</li><li>Some stores disable or restrict <code>products.json</code>. A 404 here is not &quot;the store has no products.&quot;</li><li>Variant inventory can be missing or rounded, depending on how the merchant configured the storefront.</li><li>Sale prices, compare-at prices and stock need careful reading of the variant object — they are easy to mix up.</li><li>This is Shopify only. WooCommerce shops talk a different API.</li></ul>
+<p>A short script is fine for one shop. It gets messy when you want many stores, a stable schema, and WooCommerce in the same file.</p>
+<h2>The Actor</h2>
+<p><a href="https://apify.com/henryklimes/ecommerce-products-feed">Shopify &amp; WooCommerce Products Feed</a> reads public Shopify and WooCommerce endpoints (no login, no browser) and returns titles, prices, sale prices, variants, SKUs, stock, images, categories and tags. $1 per 1,000 products.</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/ecommerce-products-feed/examples/shopify-store-products-to-json">Export all Shopify store products to JSON</a></li><li><a href="https://apify.com/henryklimes/ecommerce-products-feed/examples/track-competitor-prices-shopify">Track competitor prices on Shopify stores</a></li></ul>
+<p>WooCommerce has its own page: <a href="../woocommerce-products-api/">WooCommerce products API</a>.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>
