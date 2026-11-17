@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check if a company runs Google Ads, and export competitor ads · Cleanrows</title>
+  <meta name="description" content="How to see whether a company is running Google Ads and export those ads — format, run dates and images — from the Google Ads Transparency Center, in bulk.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/google-ads-transparency-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Check if a company runs Google Ads, and export competitor ads">
+  <meta property="og:description" content="How to see whether a company is running Google Ads and export those ads — format, run dates and images — from the Google Ads Transparency Center, in bulk.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/google-ads-transparency-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Check if a company runs Google Ads, and export competitor ads">
+  <meta name="twitter:description" content="How to see whether a company is running Google Ads and export those ads — format, run dates and images — from the Google Ads Transparency Center, in bulk.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Check if a company runs Google Ads, and export competitor ads",
+  "description": "How to see whether a company is running Google Ads and export those ads — format, run dates and images — from the Google Ads Transparency Center, in bulk.",
+  "url": "https://henryklimes.github.io/cleanrows-site/google-ads-transparency-api/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cleanrows",
+    "url": "https://henryklimes.github.io/cleanrows-site/"
+  }
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Check if a company runs Google Ads, and export competitor ads</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Ads</p>
+    <h1>Check if a company runs Google Ads, and export competitor ads</h1>
+    <p class="meta">How to see whether a company is running Google Ads and export those ads — format, run dates and images — from the Google Ads Transparency Center, in bulk.</p>
+    <p>Google publishes every advertiser&#x27;s Search, YouTube and Display ads in the <a href="https://adstransparency.google.com/">Ads Transparency Center</a>. That website is fine for checking one brand by hand. It is a poor place to score a list of leads, or to export a competitor&#x27;s ads with dates and creatives into a spreadsheet. Google&#x27;s official Transparency Center API only covers ads served in the EU/EEA, and only for approved callers.</p>
+<h2>What you can get</h2>
+<p>From a domain, a brand name or a Google advertiser ID:</p>
+<ul><li><strong>Advertiser check</strong> — whether the company is advertising, Google&#x27;s total ad-count range, the advertiser accounts behind the ads, the latest ad date, and a mix of formats (text, image, video).</li><li><strong>Ads</strong> — one row per ad: format, first and last shown dates, days running, a creative image or preview, and a link back to the Transparency Center.</li></ul>
+<p>You can filter by country and by ads shown in the last N days. Setting ads per query to 0 returns only the check, which is the cheap way to score a lead list.</p>
+<h2>Limits worth knowing</h2>
+<ul><li>Ad copy text is not extracted. Image ads and many text ads include an image URL; some responsive and video ads only have Google&#x27;s preview page.</li><li>Domain searches return every advertiser whose ads point at that domain, which can include resellers and partners. Use an advertiser ID when you want one account.</li><li>Google publishes ad counts as ranges (for example <code>1000-2000</code>). Small counts are exact.</li><li>Brand names are matched as whole words and, if needed, resolved to the brand&#x27;s website. A name that matches nothing comes back as <code>not_found</code> and is free.</li></ul>
+<h2>The Actor</h2>
+<p><a href="https://apify.com/henryklimes/google-ads-transparency">Google Ads Transparency API – Competitor Ads &amp; Advertiser Check</a> does the brand resolution, paging and country filters. It costs $0.50 per 1,000 ads and $2 per 1,000 company checks, with no start fee. Not-found and failed lookups are free.</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/google-ads-transparency/examples/who-runs-google-ads-now">Who runs Google Ads now (lead list check)</a></li><li><a href="https://apify.com/henryklimes/google-ads-transparency/examples/competitor-video-ads-in-germany">Competitor video ads in Germany</a></li><li><a href="https://apify.com/henryklimes/google-ads-transparency/examples/advertiser-ads-last-90-days">All ads of an advertiser, last 90 days</a></li></ul>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

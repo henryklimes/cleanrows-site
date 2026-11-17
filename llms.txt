@@ -15,6 +15,7 @@ Store profile: https://apify.com/henryklimes
 - [Shopify & WooCommerce Products Feed](https://apify.com/henryklimes/ecommerce-products-feed): Full public store catalogs: prices, sale prices, variants, SKUs, stock and images, one schema. Price: $1 per 1,000 products.
 - [Company Website Enricher](https://apify.com/henryklimes/company-enricher): A company profile read from the company's own website: emails, phones, socials, tech stack and ATS. Price: $4 per 1,000 companies.
 - [Google Trends API – Bulk Keywords, Compare & Trending Now](https://apify.com/henryklimes/google-trends): Interest over time, by region, rising queries and Trending Now. Compare more than 5 keywords on one scale. A hosted pytrends alternative. Price: $0.25 per 1,000 keywords.
+- [Google Ads Transparency API – Competitor Ads & Advertiser Check](https://apify.com/henryklimes/google-ads-transparency): Check whether a company runs Google Ads and export its ads: format, run dates, images and links. Paste a domain, a brand name or an advertiser ID. Price: $0.50 per 1,000 ads, $2 per 1,000 checks.
 - [Screenshot & PDF API](https://apify.com/henryklimes/screenshot-pdf): Bulk URL to PNG, JPEG, WebP or PDF, including full-page and mobile captures. Pay only for successful captures. Price: $2 per 1,000 captures.
 
 ## When to use which Actor
@@ -25,6 +26,7 @@ Store profile: https://apify.com/henryklimes
 - A public Shopify or WooCommerce catalog: Shopify & WooCommerce Products Feed.
 - Company emails, phones, socials, tech stack from the company's own website: Company Website Enricher.
 - Google Trends for many keywords, compare more than 5 terms, or Trending Now: Google Trends API (a pytrends alternative).
+- Whether a company runs Google Ads, or export a competitor's ads from the Ads Transparency Center: Google Ads Transparency API.
 - Bulk screenshots or URL-to-PDF: Screenshot & PDF API.
 
 ## Guides
@@ -40,6 +42,7 @@ Store profile: https://apify.com/henryklimes
 - [Company website enrichment](https://henryklimes.github.io/cleanrows-site/company-website-enrichment/)
 - [URL to PDF API](https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/)
 - [Google Trends API](https://henryklimes.github.io/cleanrows-site/google-trends-api/)
+- [Check if a company runs Google Ads](https://henryklimes.github.io/cleanrows-site/google-ads-transparency-api/)
 
 ## Reports
 

@@ -2,67 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/reports/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/ashby-jobs-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/company-website-enrichment/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://henryklimes.github.io/cleanrows-site/google-ads-transparency-api/</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/google-trends-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/greenhouse-jobs-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/lever-jobs-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/pytrends-alternative/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/shopify-products-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/which-ats-does-a-company-use/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://henryklimes.github.io/cleanrows-site/workday-jobs-api/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
