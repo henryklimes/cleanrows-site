@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>Cleanrows reports</title>
+  <title>Cleanrows reports and guides</title>
   <link>https://henryklimes.github.io/cleanrows-site/</link>
-  <description>Data reports from Cleanrows Apify Actors.</description>
+  <description>Data reports and guides from Cleanrows Apify Actors.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 16 Nov 2026 09:00:00 +0100</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0100</lastBuildDate>
   <item>
     <title>AI startup hiring report — 2026-11-16</title>
     <link>https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/</link>
@@ -19,6 +19,62 @@
     <guid>https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/</guid>
     <pubDate>Sun, 15 Nov 2026 09:00:00 +0100</pubDate>
     <description>Snapshot of public job boards taken on 15 November 2026 at 13:11 CET. Data collected with ATS Jobs Feed by Cleanrows. Every number below comes from that…</description>
+  </item>
+  <item>
+    <title>Google Ads Transparency Center API — what exists, and what does not</title>
+    <link>https://henryklimes.github.io/cleanrows-site/google-ads-transparency-center-api/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/google-ads-transparency-center-api/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>There is no official API for the Google Ads Transparency Center. The free BigQuery dataset covers ads shown in the EEA or Turkey. Here is how to query that, and how to export ads for any country.</description>
+  </item>
+  <item>
+    <title>How to compare more than 5 Google Trends keywords on one scale</title>
+    <link>https://henryklimes.github.io/cleanrows-site/google-trends-compare-keywords/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/google-trends-compare-keywords/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Google Trends rescales every comparison to 0–100, and the unofficial explore endpoint accepts five terms at a time. Here is the anchor-keyword method, and a hosted option that does the chaining for you.</description>
+  </item>
+  <item>
+    <title>Official Google Trends API — alpha access, and what to use until then</title>
+    <link>https://henryklimes.github.io/cleanrows-site/official-google-trends-api/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/official-google-trends-api/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Google announced a Trends API in July 2025. It is still an alpha you have to apply for. Here is what it offers, and practical options if you need Trends data today.</description>
+  </item>
+  <item>
+    <title>pytrends 429 error (TooManyRequestsError) — causes and fixes</title>
+    <link>https://henryklimes.github.io/cleanrows-site/pytrends-429/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/pytrends-429/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>pytrends raises TooManyRequestsError when Google Trends answers HTTP 429. Why it happens, free fixes that still work, and a hosted option if you have to run this on a schedule.</description>
+  </item>
+  <item>
+    <title>Shopify products.json 250 limit — how to page a full catalog</title>
+    <link>https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Shopify&#x27;s public products.json endpoint returns at most 250 products per request and ignores a larger limit. How to paginate correctly, when a short page is not the end, and what to do on very large catalogs.</description>
+  </item>
+  <item>
+    <title>SmartRecruiters jobs API — public postings, paged with offset</title>
+    <link>https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>SmartRecruiters publishes a public postings API that needs no key. It pages with limit and offset, and the list payload does not include the full job description. Here is a working request, and a hosted feed for mixed ATS boards.</description>
+  </item>
+  <item>
+    <title>Website screenshot API in Python — full-page captures, or a hosted option</title>
+    <link>https://henryklimes.github.io/cleanrows-site/website-screenshot-api/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/website-screenshot-api/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to take a full-page website screenshot in Python with Playwright, what usually breaks in bulk, and a pay-per-successful-capture API for PNG, JPEG, WebP or PDF.</description>
+  </item>
+  <item>
+    <title>Workable jobs API — public board postings as JSON</title>
+    <link>https://henryklimes.github.io/cleanrows-site/workable-jobs-api/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/workable-jobs-api/</guid>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Workable&#x27;s public widget endpoint returns a company&#x27;s open jobs as JSON, with no API key. Here is the URL, what it returns, and a hosted feed if you also need Greenhouse, Lever or Ashby in the same schema.</description>
   </item>
 </channel>
 </rss>

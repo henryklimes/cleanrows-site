@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify products.json 250 limit — how to page a full catalog · Cleanrows</title>
+  <meta name="description" content="Shopify&#x27;s public products.json endpoint returns at most 250 products per request and ignores a larger limit. How to paginate correctly, when a short page is not the end, and what to do on very large catalogs.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Shopify products.json 250 limit — how to page a full catalog">
+  <meta property="og:description" content="Shopify&#x27;s public products.json endpoint returns at most 250 products per request and ignores a larger limit. How to paginate correctly, when a short page is not the end, and what to do on very large catalogs.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shopify products.json 250 limit — how to page a full catalog">
+  <meta name="twitter:description" content="Shopify&#x27;s public products.json endpoint returns at most 250 products per request and ignores a larger limit. How to paginate correctly, when a short page is not the end, and what to do on very large catalogs.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Shopify products.json 250 limit — how to page a full catalog",
+      "description": "Shopify's public products.json endpoint returns at most 250 products per request and ignores a larger limit. How to paginate correctly, when a short page is not the end, and what to do on very large catalogs.",
+      "url": "https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do I only get 30 or 250 products from a large Shopify store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The public feed pages. Without limit you often get 30. With limit=250 you get at most 250 per request, even if you asked for more. Keep incrementing page until a response has an empty products array."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use Shopify's page_info cursor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That is for the Admin API, which needs the merchant's token. The public /products.json feed still uses page numbers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if products.json is 404?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some shops turn the feed off or put a custom storefront in front of it. Try the shop's collections, or a hosted scraper that can fall back. A 404 is not proof the catalog is empty."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Shopify products.json 250 limit — how to page a full catalog</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Ecommerce</p>
+    <h1>Shopify products.json 250 limit — how to page a full catalog</h1>
+    <p class="meta">Shopify&#x27;s public products.json endpoint returns at most 250 products per request and ignores a larger limit. How to paginate correctly, when a short page is not the end, and what to do on very large catalogs.</p>
+    <p>Most public Shopify storefronts expose a catalog as JSON, with no login:</p>
+<p><code>https://{shop}/products.json?limit=250&amp;page={n}</code></p>
+<p>Two limits catch people out.</p>
+<p><strong>The page size is 250, and a larger <code>limit</code> is silently clamped.</strong> <code>?limit=500</code> still returns at most 250 products, usually with HTTP 200. If you omit <code>limit</code>, you often get 30. A loop that stops when &quot;I asked for 500, I got fewer than 500&quot; will exit after page one.</p>
+<p><strong>Stop on an empty page, not on a short one.</strong> The end of the catalog is <code>{&quot;products&quot;: []}</code>. Some stores return pages shorter than 250 <em>before</em> the last page (for example because some products are hidden from the online channel after pagination is applied). If you stop at the first short page, you can miss most of the catalog.</p>
+<p>This <code>products.json</code> route is the public storefront feed. It is not the Admin API. Forum advice that &quot;<code>page</code> is deprecated, use <code>page_info</code>&quot; is about the authenticated Admin API. The storefront feed still pages by number, has no <code>Link</code> header, and gives you no total count.</p>
+<h2>A small script</h2>
+<pre><code>import requests
+
+def all_products(base):
+    page, out = 1, []
+    while True:
+        r = requests.get(
+            f&quot;{base.rstrip(&#x27;/&#x27;)}/products.json&quot;,
+            params={&quot;limit&quot;: 250, &quot;page&quot;: page},
+            timeout=20,
+        )
+        r.raise_for_status()
+        batch = r.json().get(&quot;products&quot;) or []
+        if not batch:
+            break
+        out.extend(batch)
+        page += 1
+    return out</code></pre>
+<p>A 404 or an HTML body instead of JSON usually means the shop has disabled the feed, not that it has no products. Wait a little between pages; bursts can be rate-limited.</p>
+<p>On very large catalogs, stores have been seen returning HTTP 400 once <code>page × limit</code> goes past 25,000, with a message like <code>Page * Limit exceeds the 25000 limit.</code> If you hit that, split the work by collection: list <code>/collections.json</code>, page each <code>/collections/{handle}/products.json</code>, and deduplicate by product <code>id</code>.</p>
+<p>Prices are in the shop&#x27;s base currency, not necessarily the currency a visitor in another country would see. Inventory and sale prices live on the variant object and are easy to mix up.</p>
+<h2>A hosted option</h2>
+<p>If you want many stores, a stable schema, or Shopify and WooCommerce in the same file, <a href="https://apify.com/henryklimes/ecommerce-products-feed">Shopify &amp; WooCommerce Products Feed</a> reads the public endpoints (no login, no browser) and returns titles, prices, sale prices, variants, SKUs, stock and images. $1 per 1,000 products.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/ecommerce-products-feed&quot;).call(run_input={
+    &quot;storeUrls&quot;: [&quot;https://allbirds.com&quot;],
+    &quot;maxProducts&quot;: 50,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(row.get(&quot;title&quot;), row.get(&quot;price&quot;), row.get(&quot;url&quot;))</code></pre>
+<p>See also the broader <a href="../shopify-products-api/">Shopify products API</a> guide and the <a href="../woocommerce-products-api/">WooCommerce products API</a> page.</p>
+<h2>FAQ</h2>
+<h3>Why do I only get 30 or 250 products from a large Shopify store?</h3>
+<p>The public feed pages. Without <code>limit</code> you often get 30. With <code>limit=250</code> you get at most 250 per request, even if you asked for more. Keep incrementing <code>page</code> until a response has an empty <code>products</code> array.</p>
+<h3>Should I use Shopify&#x27;s page_info cursor?</h3>
+<p>That is for the Admin API, which needs the merchant&#x27;s token. The public <code>/products.json</code> feed still uses <code>page</code> numbers.</p>
+<h3>What if products.json is 404?</h3>
+<p>Some shops turn the feed off or put a custom storefront in front of it. Try the shop&#x27;s collections, or a hosted scraper that can fall back. A 404 is not proof the catalog is empty.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website screenshot API in Python — full-page captures, or a hosted option · Cleanrows</title>
+  <meta name="description" content="How to take a full-page website screenshot in Python with Playwright, what usually breaks in bulk, and a pay-per-successful-capture API for PNG, JPEG, WebP or PDF.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/website-screenshot-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Website screenshot API in Python — full-page captures, or a hosted option">
+  <meta property="og:description" content="How to take a full-page website screenshot in Python with Playwright, what usually breaks in bulk, and a pay-per-successful-capture API for PNG, JPEG, WebP or PDF.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/website-screenshot-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Website screenshot API in Python — full-page captures, or a hosted option">
+  <meta name="twitter:description" content="How to take a full-page website screenshot in Python with Playwright, what usually breaks in bulk, and a pay-per-successful-capture API for PNG, JPEG, WebP or PDF.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Website screenshot API in Python — full-page captures, or a hosted option",
+      "description": "How to take a full-page website screenshot in Python with Playwright, what usually breaks in bulk, and a pay-per-successful-capture API for PNG, JPEG, WebP or PDF.",
+      "url": "https://henryklimes.github.io/cleanrows-site/website-screenshot-api/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the simplest Python library for a full-page screenshot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Playwright. Install playwright, run playwright install chromium, and call page.screenshot(full_page=True). Selenium can do it too, but Playwright's API is smaller for this job."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my \"full page\" screenshot only the first viewport?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The page probably never grew to its full height: lazy-loaded content, a canvas, or a fixed-height body. Scroll to the bottom once, or wait on a specific selector, before you capture."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get a PDF instead of a PNG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. In Playwright, page.pdf(). In the Cleanrows Actor, set outputFormats to [\"pdf\"]. See the URL to PDF guide if PDF is the main goal."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Website screenshot API in Python — full-page captures, or a hosted option</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Screenshots</p>
+    <h1>Website screenshot API in Python — full-page captures, or a hosted option</h1>
+    <p class="meta">How to take a full-page website screenshot in Python with Playwright, what usually breaks in bulk, and a pay-per-successful-capture API for PNG, JPEG, WebP or PDF.</p>
+    <p>For one URL, you do not need an API. <a href="https://playwright.dev/python/docs/screenshots">Playwright</a> (or Puppeteer) can open a headless browser and write a PNG.</p>
+<pre><code>from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page(viewport={&quot;width&quot;: 1280, &quot;height&quot;: 720})
+    page.goto(&quot;https://example.com&quot;, wait_until=&quot;networkidle&quot;)
+    page.screenshot(path=&quot;example.png&quot;, full_page=True)
+    browser.close()</code></pre>
+<p><code>full_page=True</code> scrolls the document and stitches a tall image. For a PDF, use <code>page.pdf()</code>. For a mobile frame, set a smaller viewport or a device descriptor.</p>
+<h2>What breaks when you do this in bulk</h2>
+<ul><li><strong>Cookie banners and lazy load.</strong> A screenshot taken at <code>load</code> will miss images that only appear after a scroll. You often need to dismiss a consent dialog and scroll once before capturing.</li><li><strong>Timeouts and bot checks.</strong> Some sites never go <code>networkidle</code>. Some serve a challenge page to a datacenter IP. One failure should not kill the whole job.</li><li><strong>Cost of the browser.</strong> A Chromium instance per URL is heavy. You will want a pool, a timeout, and a clear &quot;this URL failed&quot; row instead of a crashed process.</li><li><strong>Formats.</strong> PNG is huge for long pages. JPEG or WebP, or a PDF, is usually what people actually wanted when they said &quot;screenshot this list of URLs&quot;.</li></ul>
+<p>A small Playwright loop is the right tool for a dozen URLs on your laptop. It is a production system once you have hundreds of URLs, mixed desktop and mobile, and a retry policy.</p>
+<h2>A hosted option</h2>
+<p><a href="https://apify.com/henryklimes/screenshot-pdf">Screenshot &amp; PDF API</a> runs those captures on Apify: PNG, JPEG, WebP or PDF, full-page and device presets, optional selector and wait strategy. You pay $2 per 1,000 <strong>successful</strong> captures; failed ones are not billed.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/screenshot-pdf&quot;).call(run_input={
+    &quot;urls&quot;: [&quot;https://example.com&quot;],
+    &quot;outputFormats&quot;: [&quot;png&quot;],
+    &quot;viewportPreset&quot;: &quot;desktop&quot;,
+    &quot;fullPage&quot;: True,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(row.get(&quot;url&quot;), row.get(&quot;status&quot;), row.get(&quot;file_url&quot;))</code></pre>
+<p>Successful rows include a <code>file_url</code> for the capture. Related: <a href="../url-to-pdf-api/">URL to PDF API</a>.</p>
+<h2>FAQ</h2>
+<h3>What is the simplest Python library for a full-page screenshot?</h3>
+<p>Playwright. Install <code>playwright</code>, run <code>playwright install chromium</code>, and call <code>page.screenshot(full_page=True)</code>. Selenium can do it too, but Playwright&#x27;s API is smaller for this job.</p>
+<h3>Why is my &quot;full page&quot; screenshot only the first viewport?</h3>
+<p>The page probably never grew to its full height: lazy-loaded content, a canvas, or a fixed-height body. Scroll to the bottom once, or wait on a specific selector, before you capture.</p>
+<h3>Can I get a PDF instead of a PNG?</h3>
+<p>Yes. In Playwright, <code>page.pdf()</code>. In the Cleanrows Actor, set <code>outputFormats</code> to <code>[&quot;pdf&quot;]</code>. See the <a href="../url-to-pdf-api/">URL to PDF</a> guide if PDF is the main goal.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

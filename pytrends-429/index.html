@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pytrends 429 error (TooManyRequestsError) — causes and fixes · Cleanrows</title>
+  <meta name="description" content="pytrends raises TooManyRequestsError when Google Trends answers HTTP 429. Why it happens, free fixes that still work, and a hosted option if you have to run this on a schedule.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/pytrends-429/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="pytrends 429 error (TooManyRequestsError) — causes and fixes">
+  <meta property="og:description" content="pytrends raises TooManyRequestsError when Google Trends answers HTTP 429. Why it happens, free fixes that still work, and a hosted option if you have to run this on a schedule.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/pytrends-429/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="pytrends 429 error (TooManyRequestsError) — causes and fixes">
+  <meta name="twitter:description" content="pytrends raises TooManyRequestsError when Google Trends answers HTTP 429. Why it happens, free fixes that still work, and a hosted option if you have to run this on a schedule.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "pytrends 429 error (TooManyRequestsError) — causes and fixes",
+      "description": "pytrends raises TooManyRequestsError when Google Trends answers HTTP 429. Why it happens, free fixes that still work, and a hosted option if you have to run this on a schedule.",
+      "url": "https://henryklimes.github.io/cleanrows-site/pytrends-429/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why does pytrends throw TooManyRequestsError?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google's unofficial Trends endpoints rate-limit by IP and session and answer HTTP 429. pytrends raises TooManyRequestsError when it sees that status. Shared cloud IPs hit the limit first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will adding retries fix a 429?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Retries help if you also wait, drop the session, and send fewer requests. If the IP itself is blocked, immediate retries make it worse. Wait, cache, and batch up to five terms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there an official Google Trends API I should use instead?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google opened a Trends API alpha in July 2025. Access is still application-only. If you are not in the alpha, you are left with the website, an unofficial client, or a hosted scraper. See the official Google Trends API page."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>pytrends 429 error (TooManyRequestsError) — causes and fixes</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>pytrends 429 error (TooManyRequestsError) — causes and fixes</h1>
+    <p class="meta">pytrends raises TooManyRequestsError when Google Trends answers HTTP 429. Why it happens, free fixes that still work, and a hosted option if you have to run this on a schedule.</p>
+    <p><code>TooManyRequestsError: The request failed: Google returned a response with code 429</code> is the usual way a pytrends script dies. Google Trends has no generally available public API for this data, so unofficial clients talk to the same endpoints the website uses. Those endpoints rate-limit by IP and by cookie session. Shared cloud IPs (GitHub Actions, Colab, a cheap VPS) get blocked sooner than a home connection.</p>
+<p>The popular <a href="https://github.com/GeneralMills/pytrends">pytrends</a> library is unmaintained; its GitHub repository is archived and read-only. If a script still works today, pin the version and expect to own the breakage.</p>
+<h2>What to try for free</h2>
+<ol><li><strong>Get a normal browser cookie first.</strong> Visit <a href="https://trends.google.com/">trends.google.com</a> in the same session, then call the explore endpoints. Cookieless clients are limited sooner.</li><li><strong>Batch at most five keywords per request</strong>, which is what the unofficial explore endpoint accepts. Do not fire many payloads in parallel from one IP.</li><li><strong>Back off on 429.</strong> If the response has a <code>Retry-After</code> header, wait that long. Otherwise use exponential backoff with jitter, then start a new session. Do not treat an empty body as &quot;this keyword has no data&quot;.</li><li><strong>Cache results.</strong> Interest over time barely changes hour to hour. A daily job should not re-fetch a year of history for the same term every few minutes.</li><li><strong>Stay off shared datacenter IPs</strong> if you can. A laptop or a single dedicated IP, with pauses, is enough for a handful of keywords.</li></ol>
+<p>A maintained drop-in such as <code>pytrends-next</code> adds retries and a fresh session for you, but it still uses <em>your</em> IP. If Google keeps answering 429, retries alone will not save a Colab notebook.</p>
+<h2>A hosted option</h2>
+<p>If you need hundreds of keywords, a comparison of more than five terms, or a scheduled refresh, someone has to hold sessions, honour <code>Retry-After</code>, and retry. <a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> is the Cleanrows Actor built for that. Failed and <code>no_data</code> rows are not charged. Price: $0.25 per 1,000 keyword-rows, no start fee.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/google-trends&quot;).call(run_input={
+    &quot;mode&quot;: &quot;keyword&quot;,
+    &quot;keywords&quot;: [&quot;matcha&quot;, &quot;chai&quot;],
+    &quot;geos&quot;: [&quot;US&quot;],
+    &quot;timeRange&quot;: &quot;today 3-m&quot;,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(row[&quot;keyword&quot;], row[&quot;status&quot;], row.get(&quot;average_interest&quot;))</code></pre>
+<p>Related: <a href="../pytrends-alternative/">a pytrends alternative</a>, <a href="../official-google-trends-api/">the official Google Trends API (alpha)</a>, and <a href="../google-trends-compare-keywords/">comparing more than 5 keywords</a>.</p>
+<h2>FAQ</h2>
+<h3>Why does pytrends throw TooManyRequestsError?</h3>
+<p>Google&#x27;s unofficial Trends endpoints rate-limit by IP and session and answer HTTP 429. pytrends raises <code>TooManyRequestsError</code> when it sees that status. Shared cloud IPs hit the limit first.</p>
+<h3>Will adding retries fix a 429?</h3>
+<p>Retries help if you also wait, drop the session, and send fewer requests. If the IP itself is blocked, immediate retries make it worse. Wait, cache, and batch up to five terms.</p>
+<h3>Is there an official Google Trends API I should use instead?</h3>
+<p>Google opened a Trends API alpha in July 2025. Access is still application-only. If you are not in the alpha, you are left with the website, an unofficial client, or a hosted scraper. See the <a href="../official-google-trends-api/">official Google Trends API</a> page.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

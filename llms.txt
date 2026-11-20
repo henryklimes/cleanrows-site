@@ -32,16 +32,24 @@ Store profile: https://apify.com/henryklimes
 ## Guides
 
 - [pytrends alternative](https://henryklimes.github.io/cleanrows-site/pytrends-alternative/)
+- [pytrends 429 error](https://henryklimes.github.io/cleanrows-site/pytrends-429/)
+- [Official Google Trends API](https://henryklimes.github.io/cleanrows-site/official-google-trends-api/)
+- [Compare more than 5 Google Trends keywords](https://henryklimes.github.io/cleanrows-site/google-trends-compare-keywords/)
+- [Google Trends API](https://henryklimes.github.io/cleanrows-site/google-trends-api/)
 - [Greenhouse jobs API](https://henryklimes.github.io/cleanrows-site/greenhouse-jobs-api/)
 - [Lever jobs API](https://henryklimes.github.io/cleanrows-site/lever-jobs-api/)
 - [Ashby jobs API](https://henryklimes.github.io/cleanrows-site/ashby-jobs-api/)
+- [Workable jobs API](https://henryklimes.github.io/cleanrows-site/workable-jobs-api/)
+- [SmartRecruiters jobs API](https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/)
 - [Workday jobs API](https://henryklimes.github.io/cleanrows-site/workday-jobs-api/)
 - [Which ATS does a company use?](https://henryklimes.github.io/cleanrows-site/which-ats-does-a-company-use/)
 - [Shopify products API](https://henryklimes.github.io/cleanrows-site/shopify-products-api/)
+- [Shopify products.json 250 limit](https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/)
 - [WooCommerce products API](https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/)
 - [Company website enrichment](https://henryklimes.github.io/cleanrows-site/company-website-enrichment/)
 - [URL to PDF API](https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/)
-- [Google Trends API](https://henryklimes.github.io/cleanrows-site/google-trends-api/)
+- [Website screenshot API](https://henryklimes.github.io/cleanrows-site/website-screenshot-api/)
+- [Google Ads Transparency Center API](https://henryklimes.github.io/cleanrows-site/google-ads-transparency-center-api/)
 - [Check if a company runs Google Ads](https://henryklimes.github.io/cleanrows-site/google-ads-transparency-api/)
 
 ## Reports

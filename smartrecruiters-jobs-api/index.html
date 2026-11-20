@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartRecruiters jobs API — public postings, paged with offset · Cleanrows</title>
+  <meta name="description" content="SmartRecruiters publishes a public postings API that needs no key. It pages with limit and offset, and the list payload does not include the full job description. Here is a working request, and a hosted feed for mixed ATS boards.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SmartRecruiters jobs API — public postings, paged with offset">
+  <meta property="og:description" content="SmartRecruiters publishes a public postings API that needs no key. It pages with limit and offset, and the list payload does not include the full job description. Here is a working request, and a hosted feed for mixed ATS boards.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SmartRecruiters jobs API — public postings, paged with offset">
+  <meta name="twitter:description" content="SmartRecruiters publishes a public postings API that needs no key. It pages with limit and offset, and the list payload does not include the full job description. Here is a working request, and a hosted feed for mixed ATS boards.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "SmartRecruiters jobs API — public postings, paged with offset",
+      "description": "SmartRecruiters publishes a public postings API that needs no key. It pages with limit and offset, and the list payload does not include the full job description. Here is a working request, and a hosted feed for mixed ATS boards.",
+      "url": "https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do I only see 100 SmartRecruiters jobs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The API pages. Pass limit and keep moving offset until you have totalFound rows, or until a page is empty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are job descriptions missing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The public list response we received did not include jobAd or description text. Plan a second request per posting if you need the full ad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find the company identifier?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the first path segment after careers.smartrecruiters.com/ or jobs.smartrecruiters.com/. It is case-sensitive on some boards (for example DeliveryHero)."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>SmartRecruiters jobs API — public postings, paged with offset</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Job data</p>
+    <h1>SmartRecruiters jobs API — public postings, paged with offset</h1>
+    <p class="meta">SmartRecruiters publishes a public postings API that needs no key. It pages with limit and offset, and the list payload does not include the full job description. Here is a working request, and a hosted feed for mixed ATS boards.</p>
+    <p>A company&#x27;s SmartRecruiters board is usually at <code>https://careers.smartrecruiters.com/{companyIdentifier}</code>. The public postings API is:</p>
+<p><code>GET https://api.smartrecruiters.com/v1/companies/{companyIdentifier}/postings?limit=100&amp;offset=0</code></p>
+<p>No API key. The JSON includes <code>offset</code>, <code>limit</code>, <code>totalFound</code> and a <code>content</code> array. Increase <code>offset</code> by the page size until <code>offset</code> reaches <code>totalFound</code>, or until a page comes back empty. A <code>limit</code> of 100 is a reasonable page size; do not assume one request is the whole board.</p>
+<p>On 20 November 2026, <code>DeliveryHero</code> returned <code>totalFound</code> of 790 postings. The first item on that board had a title, location (city, region, country, remote/hybrid flags), department, function, employment type and <code>releasedDate</code>. It did <strong>not</strong> include a <code>jobAd</code> or job description. The list endpoint is a catalog. If you need the full text, you have to request each posting separately (the apply URL is <code>https://careers.smartrecruiters.com/{companyIdentifier}/{id}</code>).</p>
+<p>Unknown or empty identifiers often still return HTTP 200 with <code>totalFound: 0</code>. Check the count, not only the status code.</p>
+<pre><code>import requests
+
+company = &quot;DeliveryHero&quot;
+offset, limit, jobs = 0, 100, []
+while True:
+    data = requests.get(
+        f&quot;https://api.smartrecruiters.com/v1/companies/{company}/postings&quot;,
+        params={&quot;limit&quot;: limit, &quot;offset&quot;: offset},
+        timeout=20,
+    ).json()
+    page = data.get(&quot;content&quot;) or []
+    jobs.extend(page)
+    offset += len(page)
+    total = data.get(&quot;totalFound&quot;, offset)
+    if not page or offset &gt;= total:
+        break
+
+for job in jobs[:10]:
+    loc = job.get(&quot;location&quot;) or {}
+    print(job[&quot;name&quot;], loc.get(&quot;fullLocation&quot;) or loc.get(&quot;city&quot;), job.get(&quot;releasedDate&quot;))</code></pre>
+<p>There is usually no structured salary field on this endpoint. Pace your requests if you walk a large board.</p>
+<h2>A hosted option</h2>
+<p><a href="https://apify.com/henryklimes/ats-jobs-feed">ATS Jobs Feed</a> pages SmartRecruiters for you and returns the same schema it uses for Greenhouse, Lever, Ashby, Workable and Recruitee. $1.50 per 1,000 jobs. The public list still has no description, so description fields may be empty on SmartRecruiters rows unless a later version fetches each posting. Salary is filled only when a range can be parsed from text that is actually present.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/ats-jobs-feed&quot;).call(run_input={
+    &quot;companies&quot;: [&quot;smartrecruiters:DeliveryHero&quot;],
+    &quot;maxJobsPerCompany&quot;: 20,
+    &quot;includeDescription&quot;: False,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(row[&quot;title&quot;], row.get(&quot;location&quot;), row.get(&quot;posted_at&quot;))</code></pre>
+<p>Related: <a href="../workable-jobs-api/">Workable jobs API</a>, <a href="../greenhouse-jobs-api/">Greenhouse jobs API</a>, and <a href="../which-ats-does-a-company-use/">which ATS does a company use?</a>.</p>
+<h2>FAQ</h2>
+<h3>Why do I only see 100 SmartRecruiters jobs?</h3>
+<p>The API pages. Pass <code>limit</code> and keep moving <code>offset</code> until you have <code>totalFound</code> rows, or until a page is empty.</p>
+<h3>Why are job descriptions missing?</h3>
+<p>The public list response we received did not include <code>jobAd</code> or description text. Plan a second request per posting if you need the full ad.</p>
+<h3>How do I find the company identifier?</h3>
+<p>It is the first path segment after <code>careers.smartrecruiters.com/</code> or <code>jobs.smartrecruiters.com/</code>. It is case-sensitive on some boards (for example <code>DeliveryHero</code>).</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Official Google Trends API — alpha access, and what to use until then · Cleanrows</title>
+  <meta name="description" content="Google announced a Trends API in July 2025. It is still an alpha you have to apply for. Here is what it offers, and practical options if you need Trends data today.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/official-google-trends-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Official Google Trends API — alpha access, and what to use until then">
+  <meta property="og:description" content="Google announced a Trends API in July 2025. It is still an alpha you have to apply for. Here is what it offers, and practical options if you need Trends data today.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/official-google-trends-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Official Google Trends API — alpha access, and what to use until then">
+  <meta name="twitter:description" content="Google announced a Trends API in July 2025. It is still an alpha you have to apply for. Here is what it offers, and practical options if you need Trends data today.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Official Google Trends API — alpha access, and what to use until then",
+      "description": "Google announced a Trends API in July 2025. It is still an alpha you have to apply for. Here is what it offers, and practical options if you need Trends data today.",
+      "url": "https://henryklimes.github.io/cleanrows-site/official-google-trends-api/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I get a key for the official Google Trends API today?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if Google accepts you into the alpha. The public developer page is still an application form, not a self-serve console."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the official API return absolute search volumes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google says the values are consistently scaled search interest, not raw search counts. That is an improvement on the website's per-request 0–100 scale, but it is still interest, not volume."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from pytrends?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "pytrends (and similar libraries) scrape the website's unofficial endpoints. The official API is a documented product with a different scaling model. pytrends is unmaintained and is often rate-limited."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Official Google Trends API — alpha access, and what to use until then</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>Official Google Trends API — alpha access, and what to use until then</h1>
+    <p class="meta">Google announced a Trends API in July 2025. It is still an alpha you have to apply for. Here is what it offers, and practical options if you need Trends data today.</p>
+    <p>On 24 July 2025 Google announced a <a href="https://developers.google.com/search/blog/2025/07/trends-api">Google Trends API</a> on the Search Central blog. The developer page, <a href="https://developers.google.com/search/apis/trends">Google Trends API Alpha</a>, still describes it as an alpha and is &quot;accepting applications for alpha testers&quot;. This page was checked on 20 November 2026.</p>
+<h2>What the official API offers</h2>
+<p>According to Google&#x27;s own documentation, the alpha includes:</p>
+<ul><li>a rolling window of the last five years</li><li>daily, weekly, monthly and yearly aggregation</li><li>country and sub-region breakdowns</li><li>consistently scaled values, so you can join requests instead of treating every chart as its own 0–100 scale</li><li>comparisons of dozens of terms (the Trends website, Google says, lets you compare eight)</li></ul>
+<p>If you get in, use it. It is the first-party source, and consistent scaling is the main thing unofficial clients have to fake with anchor keywords.</p>
+<p>Google says it prioritises applicants who know what they want to build, can start soon, and will give feedback. Apply on the <a href="https://developers.google.com/search/apis/trends">Trends API page</a>.</p>
+<h2>If you need the data today</h2>
+<p>Until you have access, the practical options are:</p>
+<ul><li>The <a href="https://trends.google.com/">Trends website</a> for a handful of terms. Fine for one-off research, not for a weekly keyword list.</li><li>An unofficial Python client that talks to the same explore endpoints the website uses. This is what <a href="https://github.com/GeneralMills/pytrends">pytrends</a> did. That library is now unmaintained, and Google often answers HTTP 429. See <a href="../pytrends-429/">pytrends 429</a>.</li><li>A hosted client that holds sessions and retries for you.</li></ul>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> is Cleanrows&#x27; hosted option on Apify: interest over time, interest by region, related queries, Trending Now, and a compare mode that chains batches so more than five terms share one scale. $0.25 per 1,000 keyword-rows, no start fee. Empty and failed rows are free.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/google-trends&quot;).call(run_input={
+    &quot;mode&quot;: &quot;compare&quot;,
+    &quot;keywords&quot;: [&quot;chatgpt&quot;, &quot;gemini&quot;, &quot;claude&quot;, &quot;perplexity&quot;, &quot;copilot&quot;, &quot;grok&quot;],
+    &quot;geos&quot;: [&quot;US&quot;],
+    &quot;timeRange&quot;: &quot;today 12-m&quot;,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(row.get(&quot;rank&quot;), row[&quot;keyword&quot;], row.get(&quot;average_interest&quot;))</code></pre>
+<p>If Google opens general access to the official API, prefer that. Until then, do not wait on the alpha if you already have a deadline.</p>
+<p>Related: <a href="../pytrends-alternative/">pytrends alternative</a>, <a href="../google-trends-compare-keywords/">compare more than 5 keywords</a>, and the <a href="../google-trends-api/">Google Trends API</a> guide.</p>
+<h2>FAQ</h2>
+<h3>Can I get a key for the official Google Trends API today?</h3>
+<p>Only if Google accepts you into the alpha. The public developer page is still an application form, not a self-serve console.</p>
+<h3>Does the official API return absolute search volumes?</h3>
+<p>Google says the values are consistently scaled search interest, not raw search counts. That is an improvement on the website&#x27;s per-request 0–100 scale, but it is still interest, not volume.</p>
+<h3>How is this different from pytrends?</h3>
+<p>pytrends (and similar libraries) scrape the website&#x27;s unofficial endpoints. The official API is a documented product with a different scaling model. pytrends is unmaintained and is often rate-limited.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>
