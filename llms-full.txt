@@ -36,17 +36,22 @@ Store profile: https://apify.com/henryklimes
 - [Official Google Trends API](https://henryklimes.github.io/cleanrows-site/official-google-trends-api/)
 - [Compare more than 5 Google Trends keywords](https://henryklimes.github.io/cleanrows-site/google-trends-compare-keywords/)
 - [Google Trends API](https://henryklimes.github.io/cleanrows-site/google-trends-api/)
+- [Google Trends related queries](https://henryklimes.github.io/cleanrows-site/google-trends-related-queries/)
+- [Google Trends Trending Now](https://henryklimes.github.io/cleanrows-site/google-trends-trending-now/)
 - [Greenhouse jobs API](https://henryklimes.github.io/cleanrows-site/greenhouse-jobs-api/)
 - [Lever jobs API](https://henryklimes.github.io/cleanrows-site/lever-jobs-api/)
 - [Ashby jobs API](https://henryklimes.github.io/cleanrows-site/ashby-jobs-api/)
 - [Workable jobs API](https://henryklimes.github.io/cleanrows-site/workable-jobs-api/)
 - [SmartRecruiters jobs API](https://henryklimes.github.io/cleanrows-site/smartrecruiters-jobs-api/)
+- [Recruitee jobs API](https://henryklimes.github.io/cleanrows-site/recruitee-jobs-api/)
 - [Workday jobs API](https://henryklimes.github.io/cleanrows-site/workday-jobs-api/)
 - [Which ATS does a company use?](https://henryklimes.github.io/cleanrows-site/which-ats-does-a-company-use/)
 - [Shopify products API](https://henryklimes.github.io/cleanrows-site/shopify-products-api/)
 - [Shopify products.json 250 limit](https://henryklimes.github.io/cleanrows-site/shopify-products-json-limit/)
 - [WooCommerce products API](https://henryklimes.github.io/cleanrows-site/woocommerce-products-api/)
 - [Company website enrichment](https://henryklimes.github.io/cleanrows-site/company-website-enrichment/)
+- [Find company emails from a website](https://henryklimes.github.io/cleanrows-site/company-emails-from-website/)
+- [Company logo and social links from a domain](https://henryklimes.github.io/cleanrows-site/company-logo-and-socials-from-domain/)
 - [URL to PDF API](https://henryklimes.github.io/cleanrows-site/url-to-pdf-api/)
 - [Website screenshot API](https://henryklimes.github.io/cleanrows-site/website-screenshot-api/)
 - [Google Ads Transparency Center API](https://henryklimes.github.io/cleanrows-site/google-ads-transparency-center-api/)
@@ -54,6 +59,7 @@ Store profile: https://apify.com/henryklimes
 
 ## Reports
 
+- [AI tools search interest in the US, 21 October–21 November 2026](https://henryklimes.github.io/cleanrows-site/reports/2026-11-21-ai-tools-search-interest/) (21 November 2026)
 - [AI startup hiring report — 2026-11-16](https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/) (16 November 2026)
 - [AI startup hiring report — November 2026](https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/) (15 November 2026)
 

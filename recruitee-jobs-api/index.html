@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recruitee jobs API — export a public board to JSON · Cleanrows</title>
+  <meta name="description" content="Recruitee publishes a free, keyless jobs API at /api/offers. Here is the endpoint, what it returns, and a hosted Actor that maps Recruitee openings onto the same schema as Greenhouse and Lever.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/recruitee-jobs-api/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Recruitee jobs API — export a public board to JSON">
+  <meta property="og:description" content="Recruitee publishes a free, keyless jobs API at /api/offers. Here is the endpoint, what it returns, and a hosted Actor that maps Recruitee openings onto the same schema as Greenhouse and Lever.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/recruitee-jobs-api/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Recruitee jobs API — export a public board to JSON">
+  <meta name="twitter:description" content="Recruitee publishes a free, keyless jobs API at /api/offers. Here is the endpoint, what it returns, and a hosted Actor that maps Recruitee openings onto the same schema as Greenhouse and Lever.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Recruitee jobs API — export a public board to JSON",
+      "description": "Recruitee publishes a free, keyless jobs API at /api/offers. Here is the endpoint, what it returns, and a hosted Actor that maps Recruitee openings onto the same schema as Greenhouse and Lever.",
+      "url": "https://henryklimes.github.io/cleanrows-site/recruitee-jobs-api/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need a Recruitee API key?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not for the public board. https://{company}.recruitee.com/api/offers is unauthenticated. Recruitee's private recruiting API is a different product and does need credentials; this page is only about the public offers list."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find the company slug?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the subdomain of the careers site (slug.recruitee.com) or the first path segment on recruitee.com/slug. Guessing from the brand name is unreliable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the endpoint page results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In practice the public offers endpoint returns the whole board in one response. If a request fails, retry the same URL; there is no documented limit/offset contract to walk."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Recruitee jobs API — export a public board to JSON</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Job boards</p>
+    <h1>Recruitee jobs API — export a public board to JSON</h1>
+    <p class="meta">Recruitee publishes a free, keyless jobs API at /api/offers. Here is the endpoint, what it returns, and a hosted Actor that maps Recruitee openings onto the same schema as Greenhouse and Lever.</p>
+    <p>Recruitee gives every company a public job board API. You do not need a key:</p>
+<p><code>https://{company}.recruitee.com/api/offers</code></p>
+<p>The JSON body has an <code>offers</code> array. Typical fields are <code>id</code>, <code>title</code>, <code>department</code>, <code>location</code>, <code>employment_type</code>, <code>remote</code>, <code>description</code>, <code>careers_url</code>, <code>created_at</code> and <code>updated_at</code>. One request usually returns the whole board; there is no official pagination to walk.</p>
+<h2>Gotchas</h2>
+<ul><li>The <code>{company}</code> token is the Recruitee subdomain, not always the brand. Read it from the careers URL (<code>acme.recruitee.com</code> or a <code>recruitee.com/acme</code> path).</li><li>A 404 means that subdomain does not exist, or the board is not public. Treat it as &quot;no board&quot;, not as &quot;zero jobs&quot;.</li><li>Descriptions often arrive as HTML. Salary, when it is present at all, is usually inside that HTML rather than a structured field.</li><li>This API only covers Recruitee. Greenhouse, Lever, Ashby, Workable and SmartRecruiters each have a different shape.</li></ul>
+<p>A short Python script is enough for one board. The work starts when you want many boards, a stable schema, and the same columns from the other applicant tracking systems.</p>
+<h2>One schema with the other ATS boards</h2>
+<p><a href="https://apify.com/henryklimes/ats-jobs-feed">ATS Jobs Feed</a> pulls Recruitee, Greenhouse, Lever, Ashby, Workable and SmartRecruiters into one JSON or CSV feed: title, company, location, salary when the company publishes one, apply URL, and optional description. It costs $1.50 per 1,000 jobs, with no start fee.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/ats-jobs-feed&quot;).call(run_input={
+    &quot;companies&quot;: [
+        {&quot;name&quot;: &quot;Example&quot;, &quot;ats&quot;: &quot;recruitee&quot;, &quot;identifier&quot;: &quot;example&quot;},
+    ],
+    &quot;includeDescription&quot;: True,
+})
+for job in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(job[&quot;title&quot;], job[&quot;location&quot;], job[&quot;apply_url&quot;])</code></pre>
+<p>If you only have a company domain and not the Recruitee slug, <a href="https://apify.com/henryklimes/careers-ats-detector">Careers Page &amp; ATS Detector</a> can find the board ID first. For Greenhouse, Lever and Ashby see the <a href="../greenhouse-jobs-api/">Greenhouse</a>, <a href="../lever-jobs-api/">Lever</a> and <a href="../ashby-jobs-api/">Ashby</a> guides.</p>
+<h2>FAQ</h2>
+<h3>Do I need a Recruitee API key?</h3>
+<p>Not for the public board. <code>https://{company}.recruitee.com/api/offers</code> is unauthenticated. Recruitee&#x27;s private recruiting API is a different product and does need credentials; this page is only about the public offers list.</p>
+<h3>How do I find the company slug?</h3>
+<p>It is the subdomain of the careers site (<code>slug.recruitee.com</code>) or the first path segment on <code>recruitee.com/slug</code>. Guessing from the brand name is unreliable.</p>
+<h3>Does the endpoint page results?</h3>
+<p>In practice the public offers endpoint returns the whole board in one response. If a request fails, retry the same URL; there is no documented <code>limit</code>/<code>offset</code> contract to walk.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Trends Trending Now API — daily trending searches · Cleanrows</title>
+  <meta name="description" content="Google publishes a public Trending Now RSS feed per country, with around 10 rising searches, approximate traffic and news. How to read it for free, and a hosted Actor if you want a scheduled history.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/google-trends-trending-now/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Google Trends Trending Now API — daily trending searches">
+  <meta property="og:description" content="Google publishes a public Trending Now RSS feed per country, with around 10 rising searches, approximate traffic and news. How to read it for free, and a hosted Actor if you want a scheduled history.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/google-trends-trending-now/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Google Trends Trending Now API — daily trending searches">
+  <meta name="twitter:description" content="Google publishes a public Trending Now RSS feed per country, with around 10 rising searches, approximate traffic and news. How to read it for free, and a hosted Actor if you want a scheduled history.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Google Trends Trending Now API — daily trending searches",
+      "description": "Google publishes a public Trending Now RSS feed per country, with around 10 rising searches, approximate traffic and news. How to read it for free, and a hosted Actor if you want a scheduled history.",
+      "url": "https://henryklimes.github.io/cleanrows-site/google-trends-trending-now/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Trending Now an official API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The RSS feed is a public Google Trends URL, not the official Trends API alpha. There is no key and no SLA. The feed can change shape."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many trending searches do I get per country?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The live Google feed is currently about 10 items per country. Asking for more than that will not invent extra rows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get worldwide Trending Now, or a US state?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The feed is per country code. Worldwide and sub-regions are not available in this mode."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Google Trends Trending Now API — daily trending searches</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>Google Trends Trending Now API — daily trending searches</h1>
+    <p class="meta">Google publishes a public Trending Now RSS feed per country, with around 10 rising searches, approximate traffic and news. How to read it for free, and a hosted Actor if you want a scheduled history.</p>
+    <p><a href="https://trends.google.com/trending">Google Trends Trending Now</a> lists searches that are rising right now in a country. It is not the same as interest-over-time for a keyword you already picked: you do not choose the terms, Google does. The public feed is enough for a daily digest. It does not, by itself, keep history.</p>
+<h2>What to try for free</h2>
+<p>Google still publishes a public RSS feed, one country at a time:</p>
+<p><code>https://trends.google.com/trending/rss?geo=US</code></p>
+<p>Replace <code>US</code> with another country code (<code>GB</code>, <code>DE</code>, <code>CZ</code>). Each item is a trending search, usually with approximate traffic (for example <code>20000+</code>), a start time, a picture and a few related news links. A 20-line Python script with <code>feedparser</code> or the standard library can turn that XML into rows.</p>
+<p>Limits of the free feed:</p>
+<ul><li>Google currently lists about 10 searches per country, not a long tail.</li><li>The feed is a snapshot. If you want yesterday&#x27;s list, you have to have saved it yourself.</li><li>It is per country, not worldwide and not per US state.</li><li>Approximate traffic is a bucket, not an exact count.</li></ul>
+<p>For a morning briefing in one country, the RSS feed is the right tool.</p>
+<h2>A hosted option</h2>
+<p>If you want the same feed as structured rows, for several countries, on a schedule that builds your own history, <a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> has a <code>trendingNow</code> mode. It returns <code>title</code>, <code>approx_traffic</code>, <code>started_at</code>, <code>picture</code> and <code>news</code>. Price: $0.10 per 1,000 Trending Now rows, no start fee.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/google-trends&quot;).call(run_input={
+    &quot;mode&quot;: &quot;trendingNow&quot;,
+    &quot;geos&quot;: [&quot;US&quot;, &quot;GB&quot;, &quot;DE&quot;],
+    &quot;maxTrendingItems&quot;: 20,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(row[&quot;geo&quot;], row[&quot;rank&quot;], row[&quot;title&quot;], row.get(&quot;approx_traffic&quot;))</code></pre>
+<p>Interest over time, related queries and comparisons of more than five keywords are separate modes of the same Actor. See the <a href="../google-trends-api/">Google Trends API</a> guide.</p>
+<h2>FAQ</h2>
+<h3>Is Trending Now an official API?</h3>
+<p>No. The RSS feed is a public Google Trends URL, not the official Trends API alpha. There is no key and no SLA. The feed can change shape.</p>
+<h3>How many trending searches do I get per country?</h3>
+<p>The live Google feed is currently about 10 items per country. Asking for more than that will not invent extra rows.</p>
+<h3>Can I get worldwide Trending Now, or a US state?</h3>
+<p>No. The feed is per country code. Worldwide and sub-regions are not available in this mode.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

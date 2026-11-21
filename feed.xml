@@ -5,7 +5,14 @@
   <link>https://henryklimes.github.io/cleanrows-site/</link>
   <description>Data reports and guides from Cleanrows Apify Actors.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0100</lastBuildDate>
+  <lastBuildDate>Sat, 21 Nov 2026 09:00:00 +0100</lastBuildDate>
+  <item>
+    <title>AI tools search interest in the US, 21 October–21 November 2026</title>
+    <link>https://henryklimes.github.io/cleanrows-site/reports/2026-11-21-ai-tools-search-interest/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/reports/2026-11-21-ai-tools-search-interest/</guid>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Snapshot of Google Trends taken on 21 November 2026 at 15:34 CET. Data collected with Google Trends API – Bulk Keywords, Compare &amp; Trending Now by…</description>
+  </item>
   <item>
     <title>AI startup hiring report — 2026-11-16</title>
     <link>https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/</link>
@@ -19,6 +26,41 @@
     <guid>https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/</guid>
     <pubDate>Sun, 15 Nov 2026 09:00:00 +0100</pubDate>
     <description>Snapshot of public job boards taken on 15 November 2026 at 13:11 CET. Data collected with ATS Jobs Feed by Cleanrows. Every number below comes from that…</description>
+  </item>
+  <item>
+    <title>Find company emails and phone numbers from a website</title>
+    <link>https://henryklimes.github.io/cleanrows-site/company-emails-from-website/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/company-emails-from-website/</guid>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to collect role addresses (info@, sales@) and phone numbers from a company&#x27;s own website, what not to scrape, and a hosted Actor that reads the site instead of a third-party database.</description>
+  </item>
+  <item>
+    <title>Get a company logo and social links from a domain</title>
+    <link>https://henryklimes.github.io/cleanrows-site/company-logo-and-socials-from-domain/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/company-logo-and-socials-from-domain/</guid>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to find a company&#x27;s logo, LinkedIn, X, Facebook, Instagram, YouTube, GitHub and TikTok URLs from its own website, and a hosted Actor that returns them as one profile per domain.</description>
+  </item>
+  <item>
+    <title>Export Google Trends related queries and rising search terms</title>
+    <link>https://henryklimes.github.io/cleanrows-site/google-trends-related-queries/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/google-trends-related-queries/</guid>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to pull top and rising related queries (including Breakout terms) from Google Trends, why unofficial clients often get a 429, and a hosted option that returns them as rows.</description>
+  </item>
+  <item>
+    <title>Google Trends Trending Now API — daily trending searches</title>
+    <link>https://henryklimes.github.io/cleanrows-site/google-trends-trending-now/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/google-trends-trending-now/</guid>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Google publishes a public Trending Now RSS feed per country, with around 10 rising searches, approximate traffic and news. How to read it for free, and a hosted Actor if you want a scheduled history.</description>
+  </item>
+  <item>
+    <title>Recruitee jobs API — export a public board to JSON</title>
+    <link>https://henryklimes.github.io/cleanrows-site/recruitee-jobs-api/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/recruitee-jobs-api/</guid>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Recruitee publishes a free, keyless jobs API at /api/offers. Here is the endpoint, what it returns, and a hosted Actor that maps Recruitee openings onto the same schema as Greenhouse and Lever.</description>
   </item>
   <item>
     <title>Google Ads Transparency Center API — what exists, and what does not</title>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Export Google Trends related queries and rising search terms · Cleanrows</title>
+  <meta name="description" content="How to pull top and rising related queries (including Breakout terms) from Google Trends, why unofficial clients often get a 429, and a hosted option that returns them as rows.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/google-trends-related-queries/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Export Google Trends related queries and rising search terms">
+  <meta property="og:description" content="How to pull top and rising related queries (including Breakout terms) from Google Trends, why unofficial clients often get a 429, and a hosted option that returns them as rows.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/google-trends-related-queries/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Export Google Trends related queries and rising search terms">
+  <meta name="twitter:description" content="How to pull top and rising related queries (including Breakout terms) from Google Trends, why unofficial clients often get a 429, and a hosted option that returns them as rows.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Export Google Trends related queries and rising search terms",
+      "description": "How to pull top and rising related queries (including Breakout terms) from Google Trends, why unofficial clients often get a 429, and a hosted option that returns them as rows.",
+      "url": "https://henryklimes.github.io/cleanrows-site/google-trends-related-queries/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are related-query values search volumes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Top related queries are a 0–100 index within that list. Rising values are a percent change, or \"Breakout\" when Google does not give a percentage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the related-topics list empty?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The topics widget often comes back empty for automated clients, even when the website shows topics for the same search. Do not build a pipeline that requires them."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get related queries for more than five keywords at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The unofficial explore endpoint still groups terms in small batches. A hosted client that paces sessions can walk a longer list and give you one row per keyword."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Export Google Trends related queries and rising search terms</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>Export Google Trends related queries and rising search terms</h1>
+    <p class="meta">How to pull top and rising related queries (including Breakout terms) from Google Trends, why unofficial clients often get a 429, and a hosted option that returns them as rows.</p>
+    <p>Related queries are the most useful part of Google Trends for keyword research. For a seed term you get two lists: <strong>top</strong> (0–100, relative to the most common related search) and <strong>rising</strong> (percent change versus the previous period, or the label &quot;Breakout&quot; when the term is new or the increase is huge). Related topics exist in the Trends interface too, but automated clients often get an empty list.</p>
+<h2>What to try for free</h2>
+<ol><li><strong>Use the Trends website.</strong> Open <a href="https://trends.google.com/">trends.google.com</a>, enter one keyword, pick a geography and a time range, and scroll to <em>Related queries</em>. You can download a CSV for that one view.</li><li><strong>Call the unofficial explore widgets</strong>, which is what libraries such as <a href="https://github.com/GeneralMills/pytrends">pytrends</a> wrap (<code>related_queries()</code>). Batch at most five keywords, send a normal browser cookie, and back off on HTTP 429. The pytrends repository is archived, so you will own any breakage.</li><li><strong>Do not depend on related topics.</strong> Google frequently returns that widget empty for scripted requests. Treat <code>related_topics</code> as best-effort.</li><li><strong>Cache the lists.</strong> Rising queries do not need a refresh every hour. A daily or weekly job is enough for most content calendars.</li></ol>
+<p>A short list is fine by hand. The work starts when you want related queries for hundreds of keywords, several countries, or a scheduled refresh from a shared cloud IP that Google already rate-limits.</p>
+<h2>A hosted option</h2>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> returns <code>related_queries_top</code> and <code>related_queries_rising</code> on each keyword row, with an <code>is_breakout</code> flag. Related topics are off by default; you can turn them on, and <code>related_topics_available</code> tells you whether Google actually sent any. Price: $0.25 per 1,000 keyword-rows with data. Failed and <code>no_data</code> rows are not charged.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/google-trends&quot;).call(run_input={
+    &quot;mode&quot;: &quot;keyword&quot;,
+    &quot;keywords&quot;: [&quot;heat pump&quot;, &quot;induction hob&quot;],
+    &quot;geos&quot;: [&quot;US&quot;],
+    &quot;timeRange&quot;: &quot;today 3-m&quot;,
+    &quot;includeRelatedQueries&quot;: True,
+    &quot;includeRelatedTopics&quot;: False,
+    &quot;includeRegions&quot;: False,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    rising = row.get(&quot;related_queries_rising&quot;) or []
+    print(row[&quot;keyword&quot;], [q[&quot;query&quot;] for q in rising[:5]])</code></pre>
+<p>See also the <a href="../pytrends-429/">pytrends 429</a> and <a href="../google-trends-api/">Google Trends API</a> pages.</p>
+<h2>FAQ</h2>
+<h3>Are related-query values search volumes?</h3>
+<p>No. Top related queries are a 0–100 index within that list. Rising values are a percent change, or &quot;Breakout&quot; when Google does not give a percentage.</p>
+<h3>Why is the related-topics list empty?</h3>
+<p>The topics widget often comes back empty for automated clients, even when the website shows topics for the same search. Do not build a pipeline that requires them.</p>
+<h3>Can I get related queries for more than five keywords at once?</h3>
+<p>The unofficial explore endpoint still groups terms in small batches. A hosted client that paces sessions can walk a longer list and give you one row per keyword.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

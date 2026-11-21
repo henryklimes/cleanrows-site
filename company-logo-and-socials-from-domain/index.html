@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get a company logo and social links from a domain · Cleanrows</title>
+  <meta name="description" content="How to find a company&#x27;s logo, LinkedIn, X, Facebook, Instagram, YouTube, GitHub and TikTok URLs from its own website, and a hosted Actor that returns them as one profile per domain.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/company-logo-and-socials-from-domain/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Get a company logo and social links from a domain">
+  <meta property="og:description" content="How to find a company&#x27;s logo, LinkedIn, X, Facebook, Instagram, YouTube, GitHub and TikTok URLs from its own website, and a hosted Actor that returns them as one profile per domain.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/company-logo-and-socials-from-domain/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Get a company logo and social links from a domain">
+  <meta name="twitter:description" content="How to find a company&#x27;s logo, LinkedIn, X, Facebook, Instagram, YouTube, GitHub and TikTok URLs from its own website, and a hosted Actor that returns them as one profile per domain.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Get a company logo and social links from a domain",
+      "description": "How to find a company's logo, LinkedIn, X, Facebook, Instagram, YouTube, GitHub and TikTok URLs from its own website, and a hosted Actor that returns them as one profile per domain.",
+      "url": "https://henryklimes.github.io/cleanrows-site/company-logo-and-socials-from-domain/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Where does the logo URL come from?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "From the company's own pages, usually schema.org Organization.logo or a site icon. It is a URL, not a downloaded file. If the company only uses an image inside a scripted header, the field may be empty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you avoid share-button links?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Links that are clearly \"share this page\" actions are ignored. Only profiles that look like the company's own account are kept. If a site only has share buttons, the social field stays empty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get a Facebook or LinkedIn profile that is not linked from the website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not with this method. If the company does not publish the profile on its own site, you will not get it here. Guessing a LinkedIn slug from the brand name is unreliable."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Get a company logo and social links from a domain</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Company data</p>
+    <h1>Get a company logo and social links from a domain</h1>
+    <p class="meta">How to find a company&#x27;s logo, LinkedIn, X, Facebook, Instagram, YouTube, GitHub and TikTok URLs from its own website, and a hosted Actor that returns them as one profile per domain.</p>
+    <p>A company domain is usually enough to recover the logo and the official social profiles. The homepage, the footer and a few meta tags are the right place to look. Directory sites and enrichment databases often lag behind a rebrand, or they mix in share-button links that are not the company&#x27;s own account.</p>
+<h2>What to try for free</h2>
+<p>For a short list of domains:</p>
+<ol><li>Fetch the homepage (and, if needed, the About page).</li><li>Prefer a logo from schema.org <code>Organization.logo</code>, <code>apple-touch-icon</code>, or <code>og:image</code> only when it is clearly the mark rather than a generic social card.</li><li>Collect official profile URLs from footer and header links: LinkedIn <code>/company/…</code>, X, Facebook, Instagram, YouTube, GitHub and TikTok.</li><li>Drop share buttons (<code>?share=</code>, &quot;Tweet this&quot;, &quot;Share on LinkedIn&quot;) and links that point at an employee or a random tag, not at the company.</li></ol>
+<p>A dozen domains are a quiet afternoon. A few hundred, with consistent field names and fewer false share-button links, is a small pipeline.</p>
+<h2>A hosted option</h2>
+<p><a href="https://apify.com/henryklimes/company-enricher">Company Website Enricher</a> returns <code>logo_url</code> and a <code>socials</code> object (<code>linkedin</code>, <code>x</code>, <code>facebook</code>, <code>instagram</code>, <code>youtube</code>, <code>github</code>, <code>tiktok</code>) for each domain, read from the company&#x27;s own site. Share buttons are ignored. You also get name, description, emails and phones when they are published. Price: $4 per 1,000 companies.</p>
+<pre><code>import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;henryklimes/company-enricher&quot;).call(run_input={
+    &quot;domains&quot;: [&quot;bunq.com&quot;, &quot;notion.so&quot;],
+    &quot;onlyGenericEmails&quot;: True,
+})
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    socials = row.get(&quot;socials&quot;) or {}
+    print(row[&quot;domain&quot;], row.get(&quot;logo_url&quot;), socials.get(&quot;linkedin&quot;))</code></pre>
+<p>It will not invent a logo or a profile the company does not link. For emails and phone numbers see <a href="../company-emails-from-website/">Find company emails and phone numbers from a website</a>. The broader guide is <a href="../company-website-enrichment/">Company website enrichment</a>.</p>
+<h2>FAQ</h2>
+<h3>Where does the logo URL come from?</h3>
+<p>From the company&#x27;s own pages, usually schema.org <code>Organization.logo</code> or a site icon. It is a URL, not a downloaded file. If the company only uses an image inside a scripted header, the field may be empty.</p>
+<h3>How do you avoid share-button links?</h3>
+<p>Links that are clearly &quot;share this page&quot; actions are ignored. Only profiles that look like the company&#x27;s own account are kept. If a site only has share buttons, the social field stays empty.</p>
+<h3>Can I get a Facebook or LinkedIn profile that is not linked from the website?</h3>
+<p>Not with this method. If the company does not publish the profile on its own site, you will not get it here. Guessing a LinkedIn slug from the brand name is unreliable.</p>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>
