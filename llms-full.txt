@@ -59,6 +59,7 @@ Store profile: https://apify.com/henryklimes
 
 ## Reports
 
+- [AI tools search interest in the US, week to 23 November 2026](https://henryklimes.github.io/cleanrows-site/reports/2026-11-23-ai-tools-search-interest/) (23 November 2026)
 - [AI tools search interest in the US, 21 October–21 November 2026](https://henryklimes.github.io/cleanrows-site/reports/2026-11-21-ai-tools-search-interest/) (21 November 2026)
 - [AI startup hiring report — 2026-11-16](https://henryklimes.github.io/cleanrows-site/reports/2026-11-16-ai-startup-hiring/) (16 November 2026)
 - [AI startup hiring report — November 2026](https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/) (15 November 2026)
