@@ -52,7 +52,7 @@
 <ul><li>asks for a valid <code>NID</code> cookie from the Trends homepage before the explore call;</li><li>returns 429 with a <code>Retry-After</code> header after a short burst;</li><li>sends an empty list for related topics when it thinks the client is a scraper.</li></ul>
 <p>Related topics are the fragile one. Treat them as best-effort. Related queries (top, rising, and Breakout) are more reliable.</p>
 <h2>A hosted option</h2>
-<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API – Bulk Keywords, Compare &amp; Trending Now</a> is the Cleanrows Actor built for this job. It is a pytrends alternative you run on Apify:</p>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API &amp; Scraper – Bulk Keywords, Compare, Trending</a> is the Cleanrows Actor built for this job. It is a pytrends alternative you run on Apify:</p>
 <ul><li>interest over time, interest by region, and top and rising related queries for up to 500 keywords in one run;</li><li>compare mode that chains batches so more than 5 keywords share one scale (Google&#x27;s UI stops at 5);</li><li>Trending Now by country, from Google&#x27;s public RSS feed;</li><li>pay $0.25 per 1,000 keyword-rows, with no start fee.</li></ul>
 <p>A ready-made task is here: <a href="https://apify.com/henryklimes/google-trends/examples/pytrends-alternative-bulk-google-trends">pytrends alternative: bulk Google Trends interest over time</a>.</p>
 <p>The official path is still worth watching. If Google opens a generally available Trends API, use that. Until then, a paced, session-aware client is the practical option, whether you write it yourself or run this Actor.</p>

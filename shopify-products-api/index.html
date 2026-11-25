@@ -52,7 +52,7 @@
 <ul><li>Page size is capped (commonly 250). Large catalogs need paging until a page comes back empty.</li><li>Some stores disable or restrict <code>products.json</code>. A 404 here is not &quot;the store has no products.&quot;</li><li>Variant inventory can be missing or rounded, depending on how the merchant configured the storefront.</li><li>Sale prices, compare-at prices and stock need careful reading of the variant object — they are easy to mix up.</li><li>This is Shopify only. WooCommerce shops talk a different API.</li></ul>
 <p>A short script is fine for one shop. It gets messy when you want many stores, a stable schema, and WooCommerce in the same file.</p>
 <h2>The Actor</h2>
-<p><a href="https://apify.com/henryklimes/ecommerce-products-feed">Shopify &amp; WooCommerce Products Feed</a> reads public Shopify and WooCommerce endpoints (no login, no browser) and returns titles, prices, sale prices, variants, SKUs, stock, images, categories and tags. $1 per 1,000 products.</p>
+<p><a href="https://apify.com/henryklimes/ecommerce-products-feed">WooCommerce &amp; Shopify Product Price Scraper</a> reads public Shopify and WooCommerce endpoints (no login, no browser) and returns titles, prices, sale prices, variants, SKUs, stock, images, categories and tags. $1 per 1,000 products.</p>
 <p>Example tasks:</p>
 <ul><li><a href="https://apify.com/henryklimes/ecommerce-products-feed/examples/shopify-store-products-to-json">Export all Shopify store products to JSON</a></li><li><a href="https://apify.com/henryklimes/ecommerce-products-feed/examples/track-competitor-prices-shopify">Track competitor prices on Shopify stores</a></li></ul>
 <p>WooCommerce has its own page: <a href="../woocommerce-products-api/">WooCommerce products API</a>.</p>

@@ -108,7 +108,7 @@ def all_products(base):
 <p>On very large catalogs, stores have been seen returning HTTP 400 once <code>page × limit</code> goes past 25,000, with a message like <code>Page * Limit exceeds the 25000 limit.</code> If you hit that, split the work by collection: list <code>/collections.json</code>, page each <code>/collections/{handle}/products.json</code>, and deduplicate by product <code>id</code>.</p>
 <p>Prices are in the shop&#x27;s base currency, not necessarily the currency a visitor in another country would see. Inventory and sale prices live on the variant object and are easy to mix up.</p>
 <h2>A hosted option</h2>
-<p>If you want many stores, a stable schema, or Shopify and WooCommerce in the same file, <a href="https://apify.com/henryklimes/ecommerce-products-feed">Shopify &amp; WooCommerce Products Feed</a> reads the public endpoints (no login, no browser) and returns titles, prices, sale prices, variants, SKUs, stock and images. $1 per 1,000 products.</p>
+<p>If you want many stores, a stable schema, or Shopify and WooCommerce in the same file, <a href="https://apify.com/henryklimes/ecommerce-products-feed">WooCommerce &amp; Shopify Product Price Scraper</a> reads the public endpoints (no login, no browser) and returns titles, prices, sale prices, variants, SKUs, stock and images. $1 per 1,000 products.</p>
 <pre><code>import os
 from apify_client import ApifyClient
 

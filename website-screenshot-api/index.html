@@ -94,7 +94,7 @@ with sync_playwright() as p:
 <ul><li><strong>Cookie banners and lazy load.</strong> A screenshot taken at <code>load</code> will miss images that only appear after a scroll. You often need to dismiss a consent dialog and scroll once before capturing.</li><li><strong>Timeouts and bot checks.</strong> Some sites never go <code>networkidle</code>. Some serve a challenge page to a datacenter IP. One failure should not kill the whole job.</li><li><strong>Cost of the browser.</strong> A Chromium instance per URL is heavy. You will want a pool, a timeout, and a clear &quot;this URL failed&quot; row instead of a crashed process.</li><li><strong>Formats.</strong> PNG is huge for long pages. JPEG or WebP, or a PDF, is usually what people actually wanted when they said &quot;screenshot this list of URLs&quot;.</li></ul>
 <p>A small Playwright loop is the right tool for a dozen URLs on your laptop. It is a production system once you have hundreds of URLs, mixed desktop and mobile, and a retry policy.</p>
 <h2>A hosted option</h2>
-<p><a href="https://apify.com/henryklimes/screenshot-pdf">Screenshot &amp; PDF API</a> runs those captures on Apify: PNG, JPEG, WebP or PDF, full-page and device presets, optional selector and wait strategy. You pay $2 per 1,000 <strong>successful</strong> captures; failed ones are not billed.</p>
+<p><a href="https://apify.com/henryklimes/screenshot-pdf">Website Screenshot &amp; PDF API</a> runs those captures on Apify: PNG, JPEG, WebP or PDF, full-page and device presets, optional selector and wait strategy. You pay $2 per 1,000 <strong>successful</strong> captures; failed ones are not billed.</p>
 <pre><code>import os
 from apify_client import ApifyClient
 

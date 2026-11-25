@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website tech stack checker from a company domain · Cleanrows</title>
+  <meta name="description" content="Check which CMS, analytics, chat and hiring tools a company website uses, from public page source, plus a hosted bulk checker.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/website-tech-stack-checker/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Website tech stack checker from a company domain">
+  <meta property="og:description" content="Check which CMS, analytics, chat and hiring tools a company website uses, from public page source, plus a hosted bulk checker.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/website-tech-stack-checker/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Website tech stack checker from a company domain">
+  <meta name="twitter:description" content="Check which CMS, analytics, chat and hiring tools a company website uses, from public page source, plus a hosted bulk checker.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Website tech stack checker from a company domain",
+      "description": "Check which CMS, analytics, chat and hiring tools a company website uses, from public page source, plus a hosted bulk checker.",
+      "url": "https://henryklimes.github.io/cleanrows-site/website-tech-stack-checker/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this the same as BuiltWith or Wappalyzer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Same idea, narrower output. Those products maintain large technology catalogues. This Actor records the stack signals it actually sees on the company's pages, together with contact and social fields, and does not claim a complete vendor inventory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I check many URLs at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Paste a list of domains into the bulk tech-stack task. You pay per company, not per extra page fetched inside that company's site."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will it see tools that only run behind login?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Only what the public site exposes."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Website tech stack checker from a company domain</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Company data</p>
+    <h1>Website tech stack checker from a company domain</h1>
+    <p class="meta">Check which CMS, analytics, chat and hiring tools a company website uses, from public page source, plus a hosted bulk checker.</p>
+    <p>A &quot;website tech stack checker&quot; looks at a public site and names the tools behind it: WordPress or Webflow, Google Analytics or Segment, Intercom, Shopify, a Greenhouse apply widget. Browser extensions do this one URL at a time. Bulk work needs a script.</p>
+<h2>What you can read without logging in</h2>
+<p>From the HTML, cookies, script hosts and a few response headers you can usually see:</p>
+<ul><li>CMS or site builder (<code>wp-content</code>, <code>cdn.shopify.com</code>, Webflow, Wix);</li><li>tag managers and analytics (<code>googletagmanager.com</code>, <code>cdn.segment.com</code>);</li><li>chat and support widgets;</li><li>sometimes the ATS, when the careers or apply flow loads greenhouse.io, lever.co, ashbyhq.com or myworkdayjobs.com.</li></ul>
+<p>This is a fingerprint, not a complete inventory. Server-side tools (the CRM, the data warehouse, the payroll system) do not show up in the marketing site. Treat the result as &quot;signals published on the website,&quot; not &quot;everything the company runs.&quot;</p>
+<p>For a single URL, view-source and search for those hosts is enough. For a list of domains, you want the homepage plus Contact / Careers, and a consistent schema.</p>
+<h2>The hosted checker</h2>
+<p><a href="https://apify.com/henryklimes/company-enricher">Website Contact &amp; Email Scraper – Company Enrichment</a> returns a rough tech stack for each domain, along with emails, phones, social profiles and a logo, all read from the company&#x27;s own site. $4 per 1,000 companies. If you only care about the hiring system, <a href="https://apify.com/henryklimes/careers-ats-detector">Careers Page &amp; ATS Detector</a> is the more focused tool ($3 per 1,000 domains).</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/company-enricher/examples/detect-website-tech-stack">Detect a website&#x27;s tech stack in bulk</a></li><li><a href="https://apify.com/henryklimes/company-enricher/examples/company-tech-stack-and-socials">Detect a company&#x27;s tech stack and social profiles</a></li><li><a href="https://apify.com/henryklimes/company-enricher/examples/domain-to-company-profile">Turn company domains into enriched lead profiles</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/find-which-ats-a-company-uses">Find which ATS a company uses</a></li></ul>
+<p>Related: <a href="../clearbit-alternative/">Clearbit alternative</a> and <a href="../company-logo-and-socials-from-domain/">Company logo and social links from a domain</a>.</p>
+<h2>FAQ</h2>
+<h3>Is this the same as BuiltWith or Wappalyzer?</h3>
+<p>Same idea, narrower output. Those products maintain large technology catalogues. This Actor records the stack signals it actually sees on the company&#x27;s pages, together with contact and social fields, and does not claim a complete vendor inventory.</p>
+<h3>Can I check many URLs at once?</h3>
+<p>Yes. Paste a list of domains into the bulk tech-stack task. You pay per company, not per extra page fetched inside that company&#x27;s site.</p>
+<h3>Will it see tools that only run behind login?</h3>
+<p>No. Only what the public site exposes.</p>
+<h2>More ready-made tasks</h2>
+<p>Open one, change the input to your own, and run it:</p>
+<ul><li><a href="https://apify.com/henryklimes/company-enricher/examples/find-social-media-profiles-from-websites">Find social media profiles from company websites</a></li><li><a href="https://apify.com/henryklimes/company-enricher/examples/clearbit-alternative-company-enrichment">Clearbit alternative: enrich company domains</a></li><li><a href="https://apify.com/henryklimes/company-enricher/examples/saas-leads-with-hiring-signal">SaaS leads with contacts and hiring signal</a></li></ul>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

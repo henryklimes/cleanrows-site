@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Which ATS does Google, Amazon or Microsoft use? · Cleanrows</title>
+  <meta name="description" content="How to tell which ATS Google, Amazon or Microsoft use from a job&#x27;s Apply URL, and how to look up a list of company domains in bulk.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/which-ats-does-google-use/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Which ATS does Google, Amazon or Microsoft use?">
+  <meta property="og:description" content="How to tell which ATS Google, Amazon or Microsoft use from a job&#x27;s Apply URL, and how to look up a list of company domains in bulk.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/which-ats-does-google-use/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Which ATS does Google, Amazon or Microsoft use?">
+  <meta name="twitter:description" content="How to tell which ATS Google, Amazon or Microsoft use from a job&#x27;s Apply URL, and how to look up a list of company domains in bulk.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Which ATS does Google, Amazon or Microsoft use?",
+      "description": "How to tell which ATS Google, Amazon or Microsoft use from a job's Apply URL, and how to look up a list of company domains in bulk.",
+      "url": "https://henryklimes.github.io/cleanrows-site/which-ats-does-google-use/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which ATS does Google use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Do not trust a cached answer. Open a live Google job, follow Apply, and read the host. Google-scale employers often use custom or mixed systems, and the form URL can differ by country or role type."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which ATS does Amazon or Microsoft use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Same method. Amazon's public careers site is often custom (amazon.jobs). Microsoft and other enterprises may use Workday for some roles and something else for others. Check the job you care about."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I look up a list of domains at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The Find which ATS a company uses task accepts a list of domains and returns the ATS, board ID, careers URL and open-job count for each."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Which ATS does Google, Amazon or Microsoft use?</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Recruiting data</p>
+    <h1>Which ATS does Google, Amazon or Microsoft use?</h1>
+    <p class="meta">How to tell which ATS Google, Amazon or Microsoft use from a job&#x27;s Apply URL, and how to look up a list of company domains in bulk.</p>
+    <p>Search suggestions for &quot;which ATS does…&quot; are almost always a famous employer: Google, Amazon, Microsoft, Apple, Netflix, Deloitte, Accenture, LinkedIn. The question is reasonable. The answer is often messy, and a blog post that names a system without showing how it was checked goes stale the moment the company changes vendor.</p>
+<h2>Read the Apply URL, not the careers page</h2>
+<p>The careers page often stays on the company domain. The applicant tracking system usually shows up one click later, on the job or the Apply form.</p>
+<ol><li>Open a current job, not a marketing &quot;life at…&quot; page.</li><li>Follow Apply (or hover the link) and read the host.</li><li>Match the host to a system: <code>boards.greenhouse.io</code> or <code>job-boards.greenhouse.io</code> is Greenhouse; <code>jobs.lever.co</code> is Lever; <code>jobs.ashbyhq.com</code> is Ashby; <code><em>.myworkdayjobs.com</code> is Workday; <code>jobs.smartrecruiters.com</code> is SmartRecruiters; <code>apply.workable.com</code> is Workable; <code></em>.icims.com</code> is iCIMS.</li><li>If the form stays on the company domain, search the page source for those hosts, a <code>gh_jid=</code> parameter, or a &quot;Powered by&quot; line.</li></ol>
+<p>Large employers often run more than one system: a campus portal, a country-specific board, or a career-site layer (Phenom, Eightfold) in front of the form that actually takes the application. The form URL is the one that matters for a given job. Custom in-house sites (Amazon&#x27;s amazon.jobs is the usual example) will not match a Greenhouse or Workday host at all.</p>
+<p>Worked examples that <em>are</em> on well-known public boards: Stripe&#x27;s jobs sit on Greenhouse (<code>job-boards.greenhouse.io/stripe</code>); NVIDIA, Salesforce and Adobe hire on Workday myworkdayjobs.com sites; Notion and OpenAI use Ashby; Palantir uses Lever. Those can change. Re-check the live Apply link before you rely on a name you read here.</p>
+<h2>Looking up many companies</h2>
+<p>Doing that by hand is fine for five employers. It does not scale to a prospect list. <a href="https://apify.com/henryklimes/careers-ats-detector">Careers Page &amp; ATS Detector</a> takes company domains and returns the careers page, the ATS, the board ID and how many jobs are open. $3 per 1,000 domains. It counts jobs; it does not download every posting. For the postings, pass the board ID to <a href="https://apify.com/henryklimes/ats-jobs-feed">Greenhouse, Lever &amp; Ashby Jobs Scraper – ATS Jobs Feed</a> or <a href="https://apify.com/henryklimes/workday-jobs-feed">Workday Jobs Scraper (myworkdayjobs.com)</a>.</p>
+<p>A longer walkthrough of the same lookup is in <a href="../which-ats-does-a-company-use/">Which ATS does a company use?</a>.</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/find-which-ats-a-company-uses">Find which ATS a company uses</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/find-companies-using-workday">Which large companies use Workday for hiring?</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/find-companies-using-greenhouse">Which companies use Greenhouse, Lever or Ashby?</a></li></ul>
+<h2>FAQ</h2>
+<h3>Which ATS does Google use?</h3>
+<p>Do not trust a cached answer. Open a live Google job, follow Apply, and read the host. Google-scale employers often use custom or mixed systems, and the form URL can differ by country or role type.</p>
+<h3>Which ATS does Amazon or Microsoft use?</h3>
+<p>Same method. Amazon&#x27;s public careers site is often custom (<code>amazon.jobs</code>). Microsoft and other enterprises may use Workday for some roles and something else for others. Check the job you care about.</p>
+<h3>Can I look up a list of domains at once?</h3>
+<p>Yes. The <a href="https://apify.com/henryklimes/careers-ats-detector/examples/find-which-ats-a-company-uses">Find which ATS a company uses</a> task accepts a list of domains and returns the ATS, board ID, careers URL and open-job count for each.</p>
+<h2>More ready-made tasks</h2>
+<p>Open one, change the input to your own, and run it:</p>
+<ul><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/find-careers-pages-for-domains">Find careers pages for a list of company domains</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/companies-hiring-signal-job-counts">Count open jobs per company for sales prospecting</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/ats-lookup-european-startups">ATS lookup for European startups</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/ats-detector-yc-startups">Which ATS do YC startups use?</a></li><li><a href="https://apify.com/henryklimes/careers-ats-detector/examples/job-board-ids-for-job-aggregators">Get job-board IDs for a job aggregator</a></li></ul>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

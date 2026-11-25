@@ -94,7 +94,7 @@ LIMIT 20</code></pre>
 <p>Political ads are a different bundle again (<code>google_political_ads</code>). Do not mix them up with commercial creatives.</p>
 <h2>Exporting ads for any country</h2>
 <p>For a lead list or a competitor in the US, the website is the source. Doing that in bulk means paging a JavaScript app that can change without notice.</p>
-<p><a href="https://apify.com/henryklimes/google-ads-transparency">Google Ads Transparency API – Competitor Ads &amp; Advertiser Check</a> is the Cleanrows Actor for that job. Paste a domain, a brand name or an advertiser ID. You get a check (is this company advertising, Google&#x27;s ad-count range, the advertiser accounts) and, if you want them, one row per ad: format, first and last shown dates, an image or preview, and a link back to the Center. $0.50 per 1,000 ads and $2 per 1,000 checks, no start fee. Not-found lookups are free. Set <code>maxAdsPerQuery</code> to 0 to only run the check.</p>
+<p><a href="https://apify.com/henryklimes/google-ads-transparency">Google Ads Library Scraper (Ads Transparency Center)</a> is the Cleanrows Actor for that job. Paste a domain, a brand name or an advertiser ID. You get a check (is this company advertising, Google&#x27;s ad-count range, the advertiser accounts) and, if you want them, one row per ad: format, first and last shown dates, an image or preview, and a link back to the Center. $0.50 per 1,000 ads and $2 per 1,000 checks, no start fee. Not-found lookups are free. Set <code>maxAdsPerQuery</code> to 0 to only run the check.</p>
 <p>It does not extract ad copy text. Domain searches can include resellers whose ads point at that domain; use an advertiser ID when you want one account.</p>
 <pre><code>import os
 from apify_client import ApifyClient

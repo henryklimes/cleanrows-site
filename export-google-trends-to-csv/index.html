@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Export Google Trends data to CSV in bulk · Cleanrows</title>
+  <meta name="description" content="Export Google Trends interest over time to CSV for many keywords, including comparisons of more than five terms on one 0–100 scale.">
+  <link rel="canonical" href="https://henryklimes.github.io/cleanrows-site/export-google-trends-to-csv/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Export Google Trends data to CSV in bulk">
+  <meta property="og:description" content="Export Google Trends interest over time to CSV for many keywords, including comparisons of more than five terms on one 0–100 scale.">
+  <meta property="og:url" content="https://henryklimes.github.io/cleanrows-site/export-google-trends-to-csv/">
+  <meta property="og:site_name" content="Cleanrows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Export Google Trends data to CSV in bulk">
+  <meta name="twitter:description" content="Export Google Trends interest over time to CSV for many keywords, including comparisons of more than five terms on one 0–100 scale.">
+  <link rel="alternate" type="application/rss+xml" title="Cleanrows reports" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Export Google Trends data to CSV in bulk",
+      "description": "Export Google Trends interest over time to CSV for many keywords, including comparisons of more than five terms on one 0–100 scale.",
+      "url": "https://henryklimes.github.io/cleanrows-site/export-google-trends-to-csv/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Cleanrows",
+        "url": "https://henryklimes.github.io/cleanrows-site/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I download Google Trends as CSV without writing code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Run one of the example tasks in Apify Console and use the dataset Export menu. You can also still download a single five-term comparison from the Trends website itself."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I put 20 keywords on one scale?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use compare mode on the Actor (or the compare-more-than-5 task). It anchors batches so the 0–100 values are comparable. A plain loop of single-keyword Explore downloads is not on one scale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I export Trends by US state, or YouTube search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. See Google Trends interest by US state and YouTube search trends."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="logo" href="../">Clean<span>rows</span></a>
+      <nav class="primary"><a href="../">Home</a><a href="../reports/">Reports</a><a href="https://apify.com/henryklimes">Apify Store</a></nav>
+    </div>
+  </header>
+  <main>
+    <p class="crumbs"><a href="../">Home</a> / <span>Export Google Trends data to CSV in bulk</span></p>
+    <div class="wrap prose">
+  <div class="measure">
+    <p class="kicker">Google Trends</p>
+    <h1>Export Google Trends data to CSV in bulk</h1>
+    <p class="meta">Export Google Trends interest over time to CSV for many keywords, including comparisons of more than five terms on one 0–100 scale.</p>
+    <p>Google Trends lets you download a CSV for a single explore view, and that is the right first step: open the chart, use the download icon, and you get interest over time for up to five compared terms. The pain starts when you have 50 keywords, want a daily refresh, or need more than five (or eight) terms on one 0–100 scale.</p>
+<h2>What the website already gives you</h2>
+<ul><li>Interest over time, interest by region, related queries and related topics, for a geo and date range you pick.</li><li>A CSV per view, for up to five terms in a comparison (eight in some Trends UIs).</li><li><a href="https://trends.google.com/trending">Trending Now</a> and a public RSS feed per country, which is a different product from interest-over-time.</li></ul>
+<p>Pasting keywords by hand does not scale, and each Explore download is a separate file you then have to join. The unofficial <code>pytrends</code> library used to automate this; it is archived, and it often dies with HTTP 429. See <a href="../pytrends-alternative/">pytrends alternative</a> and <a href="../pytrends-429/">pytrends 429 error</a> if that is the road you are on. Google&#x27;s official Trends API is still an <a href="../official-google-trends-api/">alpha</a> with an application process, not a generally available export button.</p>
+<h2>Bulk export</h2>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API &amp; Scraper – Bulk Keywords, Compare, Trending</a> holds the sessions, paces requests, retries, and can chain comparison batches so more than five terms share one scale. It costs $0.25 per 1,000 keyword-rows and $0.10 per 1,000 Trending Now rows, with no start fee. Failed and <code>no_data</code> rows are not charged. After a run, export the dataset as CSV or Excel.</p>
+<p>Example tasks:</p>
+<ul><li><a href="https://apify.com/henryklimes/google-trends/examples/pytrends-alternative-bulk-google-trends">pytrends alternative: bulk Google Trends interest over time</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/compare-more-than-5-keywords-google-trends">Compare more than 5 keywords in Google Trends</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/keyword-research-rising-queries-google-trends">Keyword research with rising Google Trends queries</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/google-trends-last-7-days">Google Trends for the last 7 days (hourly)</a></li></ul>
+<p>How the compare math works is in <a href="../google-trends-compare-keywords/">Compare more than 5 Google Trends keywords</a>. Related queries, including Breakout terms, are in <a href="../google-trends-related-queries/">Google Trends related queries</a>.</p>
+<h2>FAQ</h2>
+<h3>Can I download Google Trends as CSV without writing code?</h3>
+<p>Yes. Run one of the example tasks in Apify Console and use the dataset Export menu. You can also still download a single five-term comparison from the Trends website itself.</p>
+<h3>How do I put 20 keywords on one scale?</h3>
+<p>Use compare mode on the Actor (or the <a href="https://apify.com/henryklimes/google-trends/examples/compare-more-than-5-keywords-google-trends">compare-more-than-5 task</a>). It anchors batches so the 0–100 values are comparable. A plain loop of single-keyword Explore downloads is <em>not</em> on one scale.</p>
+<h3>Can I export Trends by US state, or YouTube search?</h3>
+<p>Yes. See <a href="https://apify.com/henryklimes/google-trends/examples/google-trends-by-us-state">Google Trends interest by US state</a> and <a href="https://apify.com/henryklimes/google-trends/examples/youtube-search-trends">YouTube search trends</a>.</p>
+<h2>More ready-made tasks</h2>
+<p>Open one, change the input to your own, and run it:</p>
+<ul><li><a href="https://apify.com/henryklimes/google-trends/examples/brand-vs-competitors-google-trends">Brand vs competitors: Google Trends interest on one scale</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/trending-searches-today-by-country">Trending searches today by country</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/google-shopping-trends-product-research">Google Shopping trends for product research</a></li><li><a href="https://apify.com/henryklimes/google-trends/examples/google-trends-from-explore-urls">Google Trends data from explore URLs</a></li></ul>
+  </div>
+</div>
+  </main>
+  <footer class="site">
+    <div class="wrap bar">
+      <div>© 2026 Cleanrows <a href="https://henryklimes.com" rel="author">by Jindrich Klimes</a>. Paid data Actors on the <a href="https://apify.com/henryklimes">Apify Store</a>.</div>
+      <div><a href="../llms.txt">llms.txt</a> · <a href="../feed.xml">RSS</a> · <a href="../sitemap.xml">Sitemap</a></div>
+    </div>
+  </footer>
+</body>
+</html>

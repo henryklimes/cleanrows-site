@@ -98,7 +98,7 @@
 <p>Pick an anchor that is neither the most nor the least searched term on the list. Google returns whole numbers. Next to a huge anchor, a small keyword is rounded to 0, and no factor can bring it back. A 0 here often means &quot;too small to measure in this batch&quot;, not &quot;no interest&quot;. Re-run tiny terms against similar-sized ones instead of reporting them as dead.</p>
 <p>You will still get HTTP 429 if you send batches too fast. Space them out; see <a href="../pytrends-429/">pytrends 429</a>.</p>
 <h2>A hosted option</h2>
-<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API</a> has a <code>compare</code> mode that sizes the keywords, runs batches of five that share an anchor, and returns one row per term on a shared scale, with a rank column. Keywords still below Google&#x27;s resolution are flagged with low precision rather than reported as 0. $0.25 per 1,000 keyword-rows.</p>
+<p><a href="https://apify.com/henryklimes/google-trends">Google Trends API &amp; Scraper – Bulk Keywords, Compare, Trending</a> has a <code>compare</code> mode that sizes the keywords, runs batches of five that share an anchor, and returns one row per term on a shared scale, with a rank column. Keywords still below Google&#x27;s resolution are flagged with low precision rather than reported as 0. $0.25 per 1,000 keyword-rows.</p>
 <pre><code>import os
 from apify_client import ApifyClient
 

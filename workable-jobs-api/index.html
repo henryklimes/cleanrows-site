@@ -98,7 +98,7 @@ for job in data.get(&quot;jobs&quot;) or []:
 <p>Useful fields, in our check of that board: <code>title</code>, <code>shortcode</code>, <code>department</code>, <code>employment_type</code>, <code>telecommuting</code>, <code>city</code>, <code>state</code>, <code>country</code>, a <code>locations</code> array (do not read only the first top-level city if you care about every office), <code>published_on</code>, <code>application_url</code> and <code>description</code>. We did not see a structured salary field; some postings mention pay only in the description.</p>
 <p>The widget is built for an embed, not as a versioned developer API. Field names can change, and you have to normalize them yourself if you also read Greenhouse or Lever.</p>
 <h2>A hosted option</h2>
-<p><a href="https://apify.com/henryklimes/ats-jobs-feed">ATS Jobs Feed</a> pulls Workable, Greenhouse, Lever, Ashby, SmartRecruiters and Recruitee into one schema (title, company, location, remote flag, salary when it can be parsed, apply URL, description). $1.50 per 1,000 jobs, no start fee. It is not for Workday sites; use the <a href="../workday-jobs-api/">Workday jobs API</a> for those.</p>
+<p><a href="https://apify.com/henryklimes/ats-jobs-feed">Greenhouse, Lever &amp; Ashby Jobs Scraper – ATS Jobs Feed</a> pulls Workable, Greenhouse, Lever, Ashby, SmartRecruiters and Recruitee into one schema (title, company, location, remote flag, salary when it can be parsed, apply URL, description). $1.50 per 1,000 jobs, no start fee. It is not for Workday sites; use the <a href="../workday-jobs-api/">Workday jobs API</a> for those.</p>
 <pre><code>import os
 from apify_client import ApifyClient
 

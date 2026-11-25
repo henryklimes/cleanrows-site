@@ -5,7 +5,7 @@
   <link>https://henryklimes.github.io/cleanrows-site/</link>
   <description>Data reports and guides from Cleanrows Apify Actors.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 23 Nov 2026 09:00:00 +0100</lastBuildDate>
+  <lastBuildDate>Wed, 25 Nov 2026 09:00:00 +0100</lastBuildDate>
   <item>
     <title>AI tools search interest in the US, week to 23 November 2026</title>
     <link>https://henryklimes.github.io/cleanrows-site/reports/2026-11-23-ai-tools-search-interest/</link>
@@ -33,6 +33,83 @@
     <guid>https://henryklimes.github.io/cleanrows-site/reports/2026-11-15-ai-startup-hiring/</guid>
     <pubDate>Sun, 15 Nov 2026 09:00:00 +0100</pubDate>
     <description>Snapshot of public job boards taken on 15 November 2026 at 13:11 CET. Data collected with ATS Jobs Feed by Cleanrows. Every number below comes from that…</description>
+  </item>
+  <item>
+    <title>Clearbit alternative: enrich companies from their website</title>
+    <link>https://henryklimes.github.io/cleanrows-site/clearbit-alternative/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/clearbit-alternative/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>A Clearbit alternative that reads emails, phones, socials, logo and tech stack from the company&#x27;s own website, not a third-party database.</description>
+  </item>
+  <item>
+    <title>Does a company use Greenhouse? How to check</title>
+    <link>https://henryklimes.github.io/cleanrows-site/does-a-company-use-greenhouse/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/does-a-company-use-greenhouse/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to tell whether a company hires on Greenhouse, Lever, Ashby or another ATS, from one Apply URL or a list of domains.</description>
+  </item>
+  <item>
+    <title>Export Google Trends data to CSV in bulk</title>
+    <link>https://henryklimes.github.io/cleanrows-site/export-google-trends-to-csv/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/export-google-trends-to-csv/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Export Google Trends interest over time to CSV for many keywords, including comparisons of more than five terms on one 0–100 scale.</description>
+  </item>
+  <item>
+    <title>Export myworkdayjobs.com jobs to CSV</title>
+    <link>https://henryklimes.github.io/cleanrows-site/export-myworkdayjobs-jobs-to-csv/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/export-myworkdayjobs-jobs-to-csv/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Export jobs from a myworkdayjobs.com career site to CSV or Excel, including how to get past the unofficial 2,000-job list cap.</description>
+  </item>
+  <item>
+    <title>Scrape the Google Ads Library (Transparency Center)</title>
+    <link>https://henryklimes.github.io/cleanrows-site/scrape-google-ads-library/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/scrape-google-ads-library/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to scrape the Google Ads Library (Ads Transparency Center). There is no official commercial API; here is how to export ads for any country.</description>
+  </item>
+  <item>
+    <title>Scrape a Greenhouse job board to JSON or CSV</title>
+    <link>https://henryklimes.github.io/cleanrows-site/scrape-greenhouse-jobs/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/scrape-greenhouse-jobs/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Scrape a public Greenhouse job board to JSON or CSV via the official board API, or a hosted Actor that also covers Lever and Ashby.</description>
+  </item>
+  <item>
+    <title>Track competitor prices on Shopify stores</title>
+    <link>https://henryklimes.github.io/cleanrows-site/track-shopify-competitor-prices/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/track-shopify-competitor-prices/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Watch competitor prices on Shopify with the public products.json feed: sale prices, stock and variants, on a schedule.</description>
+  </item>
+  <item>
+    <title>Website tech stack checker from a company domain</title>
+    <link>https://henryklimes.github.io/cleanrows-site/website-tech-stack-checker/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/website-tech-stack-checker/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Check which CMS, analytics, chat and hiring tools a company website uses, from public page source, plus a hosted bulk checker.</description>
+  </item>
+  <item>
+    <title>Which ATS does Google, Amazon or Microsoft use?</title>
+    <link>https://henryklimes.github.io/cleanrows-site/which-ats-does-google-use/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/which-ats-does-google-use/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to tell which ATS Google, Amazon or Microsoft use from a job&#x27;s Apply URL, and how to look up a list of company domains in bulk.</description>
+  </item>
+  <item>
+    <title>Which companies use Workday for hiring?</title>
+    <link>https://henryklimes.github.io/cleanrows-site/which-companies-use-workday-for-hiring/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/which-companies-use-workday-for-hiring/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>How to recognise a Workday career site on myworkdayjobs.com and look up which companies use it for hiring.</description>
+  </item>
+  <item>
+    <title>WooCommerce price scraper — export a public catalog</title>
+    <link>https://henryklimes.github.io/cleanrows-site/woocommerce-price-scraper/</link>
+    <guid>https://henryklimes.github.io/cleanrows-site/woocommerce-price-scraper/</guid>
+    <pubDate>Wed, 25 Nov 2026 09:00:00 +0100</pubDate>
+    <description>Export prices, sale prices, variants and stock from a public WooCommerce store with the Store API, or a hosted scraper.</description>
   </item>
   <item>
     <title>Find company emails and phone numbers from a website</title>

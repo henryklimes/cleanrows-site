@@ -107,7 +107,7 @@ for job in jobs[:10]:
     print(job[&quot;name&quot;], loc.get(&quot;fullLocation&quot;) or loc.get(&quot;city&quot;), job.get(&quot;releasedDate&quot;))</code></pre>
 <p>There is usually no structured salary field on this endpoint. Pace your requests if you walk a large board.</p>
 <h2>A hosted option</h2>
-<p><a href="https://apify.com/henryklimes/ats-jobs-feed">ATS Jobs Feed</a> pages SmartRecruiters for you and returns the same schema it uses for Greenhouse, Lever, Ashby, Workable and Recruitee. $1.50 per 1,000 jobs. The public list still has no description, so description fields may be empty on SmartRecruiters rows unless a later version fetches each posting. Salary is filled only when a range can be parsed from text that is actually present.</p>
+<p><a href="https://apify.com/henryklimes/ats-jobs-feed">Greenhouse, Lever &amp; Ashby Jobs Scraper – ATS Jobs Feed</a> pages SmartRecruiters for you and returns the same schema it uses for Greenhouse, Lever, Ashby, Workable and Recruitee. $1.50 per 1,000 jobs. The public list still has no description, so description fields may be empty on SmartRecruiters rows unless a later version fetches each posting. Salary is filled only when a range can be parsed from text that is actually present.</p>
 <pre><code>import os
 from apify_client import ApifyClient
 
